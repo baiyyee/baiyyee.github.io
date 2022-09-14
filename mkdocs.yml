@@ -12,7 +12,6 @@ theme:
     - navigation.tabs.sticky
     - navigation.expand
     - navigation.indexes
-    - toc.integrate
     - navigation.top
     - search.suggest
     - search.share
@@ -132,6 +131,13 @@ nav:
           - xxx: tsg/xxx.md
 
   - 工作笔记:
+      - SOP:
+          - Git Flow: notes/sop/git-flow.md
+          - Test Plan: notes/sop/test-plan.md
+          - Test Case: notes/sop/test-case.md
+          - Test Report: notes/sop/test-report.md
+          - Test Review: notes/sop/test-review.md
+
       - 配置:
           - 固定配置:
               - .pypirc: notes/config/pypirc.md
@@ -144,6 +150,7 @@ nav:
               - Dockerfile: notes/demo/dockerfile.md
               - pyproject.toml: notes/demo/pyproject-toml.md
               - pytest.ini: notes/demo/pytest-ini.md
+              - test.http: notes/demo/restclient-vscode.md
 
       - 工具:
           - scoop: notes/tool/scoop.md
