@@ -1,0 +1,160 @@
+site_name: Baiye Space
+site_description: Baiye's Personal Space
+site_author: Huabo He
+site_url: https://baiyyee.github.io
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.expand
+    - navigation.indexes
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.share
+    - search.highlight
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+plugins:
+  - search
+
+extra:
+  homepage: https://baiyyee.github.io
+  generator: false
+
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/baiyyee
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/repository/docker/hehuabo/wetest
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/WeTest
+
+  analytics:
+    provider: google
+    property: G-3SXG4P8HT5
+
+copyright: >
+  Copyright &copy; 2022 Huabo He
+
+nav:
+  - 开源:
+      - WeTest: project/wetest.md
+      - TestBase: project/testbase.md
+
+  - 技术栈:
+      - 测试框架:
+          - pytest: full-stack/framework/pytest.md
+          - playwright: full-stack/framework/playwright.md
+          - allure: full-stack/framework/allure.md
+          - fastapi: full-stack/framework/fastapi.md
+          - testng: full-stack/framework/testng.md
+          - vue: full-stack/framework/vue.md
+
+      - CI/CD:
+          - git: full-stack/cicd/git.md
+          - docker: full-stack/cicd/docker.md
+          - github: full-stack/cicd/github.md
+          - gitlab: full-stack/cicd/gitlab.md
+          - docker: full-stack/cicd/docker.md
+          - jenkins: full-stack/cicd/jenkins.md
+          - build: full-stack/cicd/build.md
+
+      - 编程语言:
+          - python: full-stack/coding/python.md
+          - mysql: full-stack/coding/mysql.md
+          - linux: full-stack/coding/linux.md
+          - java: full-stack/coding/java.md
+          - go: full-stack/coding/go.md
+          - powershell: full-stack/coding/powershell.md
+          - html: full-stack/coding/html.md
+          - javascript: full-stack/coding/javascript.md
+          - css: full-stack/coding/css.md
+
+      - 数据分析:
+          - pandas: full-stack/data-analysis/pandas.md
+          - numpy: full-stack/data-analysis/numpy.md
+
+      - 环境监控:
+          - sentry: full-stack/monitor/sentry.md
+          - grafana: full-stack/monitor/grafana.md
+
+      - 常用工具:
+          - markdown: full-stack/tool/markdown.md
+          - pypi: full-stack/tool/pypi.md
+          - wrk: full-stack/tool/wrk.md
+          - jmeter: full-stack/tool/jmeter.md
+          - loadrunner: full-stack/tool/loadrunner.md
+          - crontab: full-stack/tool/crontab.md
+          - redis: full-stack/tool/redis.md
+          - rabbitmq: full-stack/tool/rabbitmq.md
+          - figma: full-stack/tool/figma.md
+          - nginx: full-stack/tool/nginx.md
+          - sqlite: full-stack/tool/sqlite.md
+          - maven: full-stack/tool/maven.md
+
+  - 解决方案:
+      - 思路:
+          - xxx: tsg/xxx.md
+          - xxx: tsg/xxx.md
+          - xxx: tsg/xxx.md
+
+      - 代码:
+          - xxx: tsg/xxx.md
+          - xxx: tsg/xxx.md
+          - xxx: tsg/xxx.md
+
+      - 工具:
+          - xxx: tsg/xxx.md
+          - xxx: tsg/xxx.md
+          - xxx: tsg/xxx.md
+
+  - 工作笔记:
+      - 配置:
+          - 固定配置:
+              - .pypirc: notes/config/pypirc.md
+              - .zshrc: notes/config/zshrc.md
+              - pip.conf: notes/config/pip.md
+              - source.list: notes/config/apt-source-list.md
+              - settings.json: notes/config/vscode-settings.md
+
+          - 配置样例:
+              - Dockerfile: notes/demo/dockerfile.md
+              - pyproject.toml: notes/demo/pyproject-toml.md
+              - pytest.ini: notes/demo/pytest-ini.md
+
+      - 工具:
+          - scoop: notes/tool/scoop.md
+
+  - 收藏夹:
+      - 工具: favorites/tool.md
+      - 网站: favorites/site.md
+      - 阅读: favorites/book.md
+      - 旅行: favorites/travel.md
+
+  - 白夜:
+      - 摘抄本: baiye/reference.md
+
+  - 关于我: about.md

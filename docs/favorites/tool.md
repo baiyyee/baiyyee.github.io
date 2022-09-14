@@ -1,0 +1,46 @@
+## IDE
+
+- VSCode
+- HeidiSQL
+- DataGrip
+
+## Desktop
+- Win
+  - CloudBerry Explorer for Amazon S3
+  - Remote Desktop Connection Manager
+  - WinSCP
+  - Xshell 6
+  - Microsoft Edge
+  - Google Chrome
+  - Docker Desktop
+  - Postman
+  - Fiddler
+  - Figma
+  - OpenConnect-GUI
+  - Clash for Windows
+  - uTools
+  - 极速PDF阅读器
+  - 7-Zip
+  - Notion
+  - 飞书
+  - 微信
+  - TIM
+  - PotPlayer-64 bit
+  - calibre 64bit
+  - FastStone Capture
+  - EV 录屏
+  - Diffinity
+  - Snipaste
+  - Python
+  - Java
+  - Git
+  - WSL(g)
+  - Scoop
+  - Notepad++
+  - GifCam
+  - Traffic Monitor
+  - OneNote
+  - XMind Zen
+  - EmEditor
+  - 火绒
+  - CCleaner
