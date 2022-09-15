@@ -3,6 +3,9 @@ site_description: Baiye's Personal Space
 site_author: Huabo He
 site_url: https://baiyyee.github.io
 
+repo_name: baiyyee/WeTest
+repo_url: https://github.com/baiyyee/WeTest
+
 theme:
   name: material
   language: zh
