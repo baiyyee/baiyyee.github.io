@@ -1,6 +1,10 @@
 # pytest
 
+
+
+```
 pytest Tips：
+
 1.包含测试用例的文件名中包含 test_ 前缀或后缀
 2.测试用例方法名包含 test 前缀
 3.将所有用例放到某个类中统一管理时，该测试类的类名必须为 TestClass, 否则 pytest 无法识别类里面的测试用例 (collected 0 items )
@@ -66,3 +70,5 @@ pytest --markers                                        # 查看已有的 marker
 pytest -m "unittest" --alluredir=tests\report\allurereport   # 使用allure-pytest插件生成Allure测试报告
 allure serve tests\report\allurereport                       # 查看 Allure 报告
 allure serve -h 0.0.0.0 -p 8080 ./allure-result              # 指定host和端口
+
+```

@@ -1,6 +1,7 @@
 # TestBase
 
-**TestBase** is a scaffold project to start a automation test project.
+
+**TestBase** is a scaffold project to speed up your automated testing process.
 
 - System Environment (Opitonal)
   

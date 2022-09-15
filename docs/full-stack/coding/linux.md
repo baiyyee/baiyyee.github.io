@@ -1,5 +1,6 @@
 # linux
 
+```
 Linux 一切皆文件！！！
 
 
@@ -857,3 +858,4 @@ netstat       # 显示网络相关信息
 netstat -tlun # 查看本机监听的端口
 netstat -an   # 查看本机的所有网络连接
 netstat -rn   # 查看本机路由表
+```

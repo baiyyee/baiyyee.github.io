@@ -24,16 +24,16 @@ theme:
       accent: amber
       toggle:
         icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
+        name: 暗黑模式
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: teal
       accent: amber
       toggle:
         icon: material/toggle-switch
-        name: Switch to light mode
+        name: 浅色模式
   font:
-    text: Roboto
+    text: Noto Serif Simplified Chinese
     code: Roboto Mono
 
 plugins:
@@ -50,6 +50,8 @@ extra:
       link: https://hub.docker.com/repository/docker/hehuabo/wetest
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/WeTest
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:<hhbstar@hotmail.com>
 
   analytics:
     provider: google
@@ -102,6 +104,7 @@ nav:
 
       - 常用工具:
           - markdown: full-stack/tool/markdown.md
+          - wsl: full-stack/tool/wsl.md
           - pypi: full-stack/tool/pypi.md
           - wrk: full-stack/tool/wrk.md
           - jmeter: full-stack/tool/jmeter.md
@@ -135,8 +138,11 @@ nav:
           - Git Flow: notes/sop/git-flow.md
           - Test Plan: notes/sop/test-plan.md
           - Test Case: notes/sop/test-case.md
+          - Test Issue: notes/sop/test-issue.md
           - Test Report: notes/sop/test-report.md
           - Test Review: notes/sop/test-review.md
+          - Test Manager: notes/sop/test-manager.md
+          - Automated Testing: notes/sop/test-automated.md
 
       - 配置:
           - 固定配置:
@@ -149,6 +155,7 @@ nav:
           - 配置样例:
               - Dockerfile: notes/demo/dockerfile.md
               - pyproject.toml: notes/demo/pyproject-toml.md
+              - setup.py: notes/demo/setup-py.md
               - pytest.ini: notes/demo/pytest-ini.md
               - test.http: notes/demo/restclient-vscode.md
 

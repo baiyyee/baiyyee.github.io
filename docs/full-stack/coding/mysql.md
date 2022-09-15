@@ -1,5 +1,7 @@
 # mysql
 
+
+```
 -- 安装
 sudo apt-get install mysql-server
 
@@ -1903,5 +1905,4 @@ rollback;
 -- 退出数据库服务器
 mysql> exit;
 Bye
-
-
+```
