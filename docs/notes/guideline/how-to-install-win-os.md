@@ -1,4 +1,4 @@
-# 如何安装 Win 系统？
+# 如何通过硬盘安装 Win 11 系统？
 
 
 ## 前置条件
@@ -11,9 +11,9 @@
 
 ## 操作步骤
 
-1.下载 ISO 制作工具 [MediaCreationToolW11.exe](https://software-download.microsoft.com/download/pr/888969d5-f34g-4e03-ac9d-1f9786c69161/MediaCreationToolW11.exe)
+1.进入 [Win OS](https://www.microsoft.com/zh-cn/software-download/windows11/) 下载页，点击 `创建 Windows 11 安装 -> 立即下载` 下载 ISO 制作工具 [MediaCreationToolW11.exe](https://software-download.microsoft.com/download/pr/888969d5-f34g-4e03-ac9d-1f9786c69161/MediaCreationToolW11.exe)
 
-2.使用步骤1中的工具制作 Win OS ISO 文件
+2.使用步骤1中的工具制作 Win 11 ISO 文件
 
 3.下载 [软媒魔方](http://down.ruanmei.com/tweakcube/partner/pcmastersetup_u151.exe) 后打开软件，安装“硬盘安装”组件
 
