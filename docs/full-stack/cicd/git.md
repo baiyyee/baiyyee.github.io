@@ -1,6 +1,7 @@
 # git
 
-- git setup
+
+### 安装
 
 ```console
 $ git config --global user.name "username"
@@ -10,8 +11,9 @@ ssh-keygen -t rsa -C "useremail@test.com"
 cat ~/.ssh/id_rsa.pub
 ```
 
+<br>
 
-- git command
+### 常用指令
 
 ```console
 git checkout -b dev

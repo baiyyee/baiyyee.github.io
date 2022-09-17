@@ -1,19 +1,33 @@
 # mysql
 
 
+### 安装
 ```
--- 安装
 sudo apt-get install mysql-server
 
--- ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
--- https://blog.csdn.net/weixin_39345384/article/details/80855359
 sudo service mysql start
+```
+>NOTE:
+>
+> ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+> https://blog.csdn.net/weixin_39345384/article/details/80855359
 
--- 登录MySQL
+<br>
+
+### 登录 & 退出
+```
+-- 登录
 mysql -uroot -p123456
 
+-- 退出数据库服务器
+mysql> exit;
+Bye
+```
 
+<br>
 
+### 数据库操作
+```
 -- 查询数据库服务器中所有的数据库
 mysql> show databases;
 +--------------------+
@@ -35,9 +49,12 @@ Query OK, 1 row affected (0.03 sec)
 mysql> use hhbdb;
 Database changed
 
+```
 
--- mysql 常用数据类型：数值，时间，字符串
+<br>
 
+### 数据类型
+```
 数值：
     tinyint     - 1个字节
     smallint    - 2个字节
@@ -67,8 +84,12 @@ Database changed
     MEDIUMTEXT	0-16 777 215 bytes	    中等长度文本数据
     LONGBLOB	0-4 294 967 295 bytes	二进制形式的极大文本数据
     LONGTEXT	0-4 294 967 295 bytes	极大文本数据
+```
 
+<br>
 
+### 数据表操作
+```
 -- 创建数据表
 mysql> create table pet (name varchar(20), owner varchar(20), species varchar(20), sex char(1), birth date, death date);
 Query OK, 0 rows affected (0.19 sec)
@@ -162,11 +183,12 @@ Query OK, 0 rows affected (0.03 sec)
 -- 更新数据
 mysql> update pet set name = "旺财update" where name = "旺财";
 Query OK, 1 row affected (0.02 sec)
+```
 
+<br>
 
--- mysql 约束
-
-
+### mysql 约束
+```
 -- 主键约束(primary key): 唯一确定一张表中的一条记录，主键约束字段不重复且不为空
 
 mysql> create table user(id int primary key, name varchar(20));
@@ -514,10 +536,12 @@ ERROR 1062 (23000): Duplicate entry '1' for key 'student.PRIMARY'
 -- 主表中的记录被副表引用，不可用被删除
 mysql> delete from class where id = 1;
 ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`hhbdb`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`))
+```
 
+<br>
 
--- 数据库设计的三大范式
-
+### 数据库范式
+```
 -- 第一范式：数据表中的所有字段都是不可分割的原子值
 
 mysql> create table student2 (id int primary key, name varchar(20), address varchar(30));
@@ -582,7 +606,6 @@ create table myorder2 (id int primary key, product_id int, customer_id int);
 -- 拆成3个表后，就满足了第二范式
 
 
-
 -- 第三范式：在满足第二范式前提下，除开主键列外的其他列之间不能有传递依赖关系
 
 -- 订单表
@@ -596,12 +619,12 @@ create table myorder3 (id int primary key, product_id int, customer_id int, cust
 
 create table myorder3 (id int primary key, product_id int, customer_id int);
 create table customer (id int primary key, name varchar(20), customer_phone varchar(15));
+```
 
+<br>
 
-
--- mysql 查询
-
-
+### mysql 查询
+```
 -- 学生表
 create table student4 (sno varchar(20) primary key, sname varchar(20) not null, ssex varchar(10) not null, sbirthday datetime, class varchar(20));
 insert into student4 values ("001", "张三", "男", "1990-01-01", "一班"), ("002", "李四", "女", "1990-02-02", "二班"), ("003", "王五", "男", "1990-03-03", "三班"), ("004", "赵六", "女", "1990-04-04", "四班");
@@ -1353,10 +1376,12 @@ mysql> select * from person where id in (1,2) union all select * from person whe
 |  2 | 李四   |      3 |
 |  3 | 王五   |      6 |
 +----+--------+--------+
+```
 
+<br>
 
--- 事务：
-
+### mysql 事务
+```
 -- mysql 中，事务其实是一个最小的不可分割的工作单元。事务能保证业务的完整性
 
 -- 比如银行转账：
@@ -1891,18 +1916,6 @@ commit;
 
 -- 事务手动回滚：
 rollback;
-
-
--- 添加约束总结：
---  1.创建表的同时就添加约束
---  2.alter table xxx add ...
---  3.alter table xxx modify ...
-
--- 删除约束：
---  4.alter table xxx drop ...
-
-
--- 退出数据库服务器
-mysql> exit;
-Bye
 ```
+
+<br><br>

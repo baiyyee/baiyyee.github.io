@@ -2,8 +2,8 @@
 
 
 
-```
-############################ 文件内容转 DataFrame #######################################
+### DataFrame
+```python
 import pymysql
 import pandas as pd
 
@@ -50,8 +50,29 @@ ratings.index
 ratings.dtypes
 
 
-############################ Series #######################################
 
+# 根据多个字典序列创建DataFrame
+
+data = {"name": ["Bob", "John", "Roy", "Joe"], "age": [18, 19, 20, 21], "height": [165, 178, 180, 181]}
+df = pd.DataFrame(data)
+df
+
+
+# 查询列
+df["name"]  # 查询一列，结果是一个 Series
+df[["name", "age"]]  # 查询多列，结果是一个 DataFrame
+
+
+# 查询行
+df.loc[1]  # 查询单行
+df.loc[1:3]  # 查询多行
+```
+
+<br>
+
+
+### Series
+```python
 import pandas as pd
 
 # 使用默认索引
@@ -83,31 +104,12 @@ series[["name", "age"]]
 # 查看类型
 type(series["name"])  # => str
 type(series[["name", "age"]])  # => pandas.core.series.Series
+```
 
+<br>
 
-############################ DataFrame #######################################
-
-import pandas as pd
-
-# 根据多个字典序列创建DataFrame
-
-data = {"name": ["Bob", "John", "Roy", "Joe"], "age": [18, 19, 20, 21], "height": [165, 178, 180, 181]}
-df = pd.DataFrame(data)
-df
-
-
-# 查询列
-df["name"]  # 查询一列，结果是一个 Series
-df[["name", "age"]]  # 查询多列，结果是一个 DataFrame
-
-
-# 查询行
-df.loc[1]  # 查询单行
-df.loc[1:3]  # 查询多行
-
-
-############################ Pandas 数据查询 #######################################
-
+### 数据查询
+```python
 import pandas as pd
 
 path = "./beijing_tianqi_2018.csv"
@@ -164,9 +166,12 @@ df.loc[query_data, :]
 # 使用lambda查询
 df.loc[lambda data: (data["最高温度"] < 11) & (data["最低温度"] > -7) & (data["天气"] == "晴"), :]
 df.loc[lambda data: (data.index.str.startswith("2018-01-01")), :]  # 了解转字符串后函数的使用
+```
 
-############################ Pandas 数据新增列 #######################################
+<br>
 
+### 新增列
+```python
 import pandas as pd
 
 path = "./beijing_tianqi_2018.csv"
@@ -228,10 +233,12 @@ def my_func(df):
 
 
 df[["Wencha", "AVG"]] = df.apply(my_func, axis=1, result_type="expand")
+```
 
+<br>
 
-############################ Pandas 数据统计函数 #######################################
-
+### 数据统计
+```python
 import pandas as pd
 
 path = "./beijing_tianqi_2018.csv"
@@ -266,10 +273,12 @@ df.corr()
 # 单独查看某些列的相关系数
 df["最高温度"].corr(df["aqi"])
 (df["最高温度"] - df["最低温度"]).corr(df["aqi"])
+```
 
+<br>
 
-############################ Pandas 缺失值处理 #######################################
-
+### 缺失值处理
+```python
 import pandas as pd
 
 path = "./student_score.xlsx"
@@ -304,10 +313,12 @@ df["分数"] = df["分数"].fillna(0)
 df["姓名"] = df["姓名"].fillna(method="ffill")
 
 df.to_excel("./student_score_new.xlsx", index=False)
+```
 
+<br>
 
-############################ Pandas 报警处理 #######################################
-
+### 报警处理
+```python
 import pandas as pd
 
 path = "./beijing_tianqi_2018.csv"
@@ -322,10 +333,12 @@ df[df["日期"].str.startswith("2018-01")]["温差"] = df["最高温度"] - df["
 
 # 解决方案：将 get + set 的两步操作，改成 set 的一步操作
 df.loc[df["日期"].str.startswith("2018-01"), "温差"] = df["最高温度"] - df["最低温度"]
+```
 
+<br>
 
-############################ Pandas 数据排序 #######################################
-
+### 数据排序
+```python
 import pandas as pd
 
 path = "./beijing_tianqi_2018.csv"
@@ -348,10 +361,12 @@ df.sort_values(by=["最高温度", "最低温度"])
 # 多列排序且分别指定升序和降序
 df.sort_values(by=["最高温度", "最低温度"], ascending=[True, False])
 df.sort_values(by=["最高温度", "最低温度"], ascending=[True, False], inplace=True)
+```
 
+<br>
 
-############################ Pandas 字符串处理 #######################################
-
+### 字符串处理
+```python
 import pandas as pd
 
 path = "./beijing_tianqi_2018.csv"
@@ -391,10 +406,12 @@ df["中文日期"].str.replace("年", "").str.replace("月", "").str.replace("�
 
 # 方法二：使用正则表达式
 df["中文日期"].str.replace("[年月日]", "")
+```
 
+<br>
 
-############################ Pandas 中的 axis #######################################
-
+### axis
+```python
 import pandas as pd
 import numpy as np
 
@@ -418,10 +435,12 @@ def get_sum_value(data):
 
 
 df["sum"] = df.apply(get_sum_value, axis=1)
+```
 
+<br>
 
-############################ Pandas 中的 index #######################################
-
+### index
+```python
 import pandas as pd
 
 df = pd.read_csv("./ratings.csv")
@@ -473,10 +492,12 @@ s1 + s2
 #   CAtegoricalIndex : 分类索引
 #   MutableIndex : 多维索引
 #   DatetimeIndex : 日期索引
+```
 
+<br>
 
-############################ Pandas 中的 Merge 操作 (数据连接) #######################################
-
+### merge
+```python
 # Pandas 中的 Merge 操作相当于 SQL 中的 Join 操作
 
 # left, right: 合并的两个 DataFrame
@@ -517,10 +538,12 @@ pd.merge(left, right, on="key")
 
 # 自定义后缀
 pd.merge(left, right, on="key", suffixes=("_left", "_right"))
+```
 
+<br>
 
-############################ Pandas 中的 Concat 操作 (数据合并) #######################################
-
+### concat
+```python
 # 批量合并相同格式的Excel，给DataFrame添加行，给DataFrame添加列
 
 # objs: 合并对象列表，可以是DataFrame或Se
@@ -572,10 +595,12 @@ pd.concat([df1, s1, s2], axis=1)
 
 # 调整合并顺序
 pd.concat([s1, df1, s2], axis=1)
+```
 
+<br>
 
-############################ Pandas 中的 Append 操作 (数据合并) #######################################
-
+### Append
+```python
 import pandas as pd
 
 df1 = pd.DataFrame([[1, 2], [3, 4]], columns=["A", "B"])
@@ -588,10 +613,12 @@ df1.append(df2, ignore_index=True)
 
 # 使用循环一行一行给DataFrame添加数据
 pd.concat([pd.DataFrame([i], columns=["A"]) for i in range(10)], ignore_index=True)
+```
 
+<br>
 
-############################ Pandas 批量拆分于合并Excel文件 #######################################
-
+### 批量拆分于合并Excel文件
+```python
 import os
 import pandas as pd
 
@@ -645,10 +672,12 @@ for file in files:
 
 df_merged = pd.concat(df_list, ignore_index=True)
 df_merged.to_excel("./source_merged.xlsx", index=False)
+```
 
+<br>
 
-############################ Pandas 的分组统计 #######################################
-
+### groupby
+```python
 import pandas as pd
 import numpy as np
 
@@ -681,9 +710,12 @@ df.groupby("A").agg([np.sum, np.mean, np.std])["C"]
 
 # 对不同的列进行不同的统计(使用不同的聚合函数)
 df.groupby("A").agg({"C": np.sum, "D": np.mean})
+```
 
+<br>
 
-############################ Pandas 的分层索引 #######################################
+### 分层索引
+```python
 # MultiIndex => 分层索引
 
 import pandas as pd
@@ -747,10 +779,12 @@ df_new.loc[(["2019-10-01", "2019-10-02"], ["京东", "百度"]), ["开盘", "收
 # slice(None) 表示筛选这一索引列所有的内容
 df_new.loc[(["2019-10-01", "2019-10-02"], slice(None)), :]
 df_new.loc[(slice(None), ["京东", "百度"]), :]
+```
 
+<br>
 
-############################ Pandas 的数据转换函数 #######################################
-
+### 数据转换函数
+```python
 # map: 只适用于Series，实现每个值 -> 值 的映射
 # apply: 用于Series实现每个值的处理；用于DataFrame实现某个轴的Series的处理
 # applymap: 只能用于DataFrame，用于处理该DataFrame的每个元素
@@ -784,10 +818,12 @@ sub_df = df[["收盘", "开盘", "高", "低", "交易量"]]
 
 # 将"收盘", "开盘", "高", "低", "交易量"从小数转为整数
 df.loc[:, ["收盘", "开盘", "高", "低", "交易量"]] = sub_df.applymap(lambda x: int(x))
+```
 
+<br>
 
-############################ Pandas 对分组应用apply函数 #######################################
-
+### apply
+```python
 # pandas 的 groupby 遵从 split, apply, combine 模式
 
 # 归一化：将不同范围的数值映射到 [0,1] 区间
@@ -830,10 +866,12 @@ def get_wendu_topN(df, n):
 
 # 注意下面函数传参的方式
 df.groupby("月份").apply(get_wendu_topN, n=2)
+```
 
+<br>
 
-############################ Pandas 的数据透视 #######################################
-
+### 数据透视
+```python
 import pandas as pd
 import numpy as np
 
@@ -866,3 +904,5 @@ df_pivot = df_reset.pivot("pdate", "Rating", "pv")
 # DataFrame.unstack(level=-1, fill_value=None) => 将 index 和 column 调换
 # DataFrame.pivot(index=None, columns=None, values=None) => 指定index, columns, values实现二维透视
 ```
+
+<br><br>

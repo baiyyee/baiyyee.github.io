@@ -116,6 +116,7 @@ nav:
           - wsl: full-stack/tool/wsl.md
           - pypi: full-stack/tool/pypi.md
           - fiddler: full-stack/tool/fiddler.md
+          - postman: full-stack/tool/postman.md
           - redis: full-stack/tool/redis.md
           - rabbitmq: full-stack/tool/rabbitmq.md
           - figma: full-stack/tool/figma.md

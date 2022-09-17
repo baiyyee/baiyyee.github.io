@@ -1,6 +1,7 @@
 # docker
 
 
+### Docker 基础知识
 ```
 https://www.docker.com/
 https://www.docker.org.cn/
@@ -81,19 +82,14 @@ docker根据image文件生成容器的实例，同一个image文件，可以生�
 一个容器运行一种服务（如 nginx/redis/mysql等）
 
 
-
-
 centos 6.8:
 yum install -y epel-release 
 yum install -y docker-io
 /etc/sysconfig/docker => 配置文件地址
 
 
-
-
 service docker start
 windows docker desktop 手动重启
-
 
 
 https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
@@ -115,18 +111,18 @@ docker run hello-world   (hello-world 为官方测试镜像)
 
 ===============================================================================================
 
-
-
-
-
-
 大海   - 宿主机
 鲸鱼   - docker
 集装箱 - 容器实例（来自image）
 
+```
 
+<br>
 
+### Docker 常用命令
+```
 docker images   => 列出本地镜像列表
+
     REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
     hello-world   latest    bf756fb1ae65   11 months ago   13.3kB
 
@@ -290,11 +286,14 @@ docker commit => 提交对当前容器的修改使之成为一个新的镜像
 
         docker run -it -p 7777:8080 hhb/tomcat_new:2.0
 
+```
 
+<br>
 
-docker 容器数据卷：
-    - 容器的持久化
-    - 容器间继承 + 数据共享
+### docker 数据卷
+```
+- 容器的持久化
+- 容器间继承 + 数据共享
 
 
 docker理念：
@@ -438,13 +437,18 @@ dc02,dc03 继承 dc01 =>
 
 
 NOTE：子级和父级的任何更新都同步给彼此，即使后面父级容器被删除了，数据共享仍然不受影响 => 容器之间配置信息的传递，数据卷的生命周期一直持续到没有容器使用它为止
+```
 
+<br>
 
-DockerFile => 用来构建docker镜像的构建文件，是由一系列命令和参数构成的脚本
-
+### DockerFile
+```
 1. Dockerfile 
 2. docker build
 3. docker run
+
+
+Dockerfile 是用来构建docker镜像的构建文件，是由一系列命令和参数构成的脚本
 
 
 Dockerfile 语法基础：
@@ -611,68 +615,66 @@ docker history  => 列出镜像的变更历史
         #ENTRYPOINT ["/usr/local/apache-tomcat-9.0.8/bin/startup.sh"]
         #CMD ["/usr/local/apache-tomcat-9.0.8/bin/catlina.sh", "run"]
         CMD /usr/local/apache-tomcat-9.0.8/bin/startup.sh && tail -F /usr/local/apache-tomcat-9.0.8/bin/logs/catalina.out
-
-
-
-docker run Demo:
-
-    docker run -d -p 8090:8080 --name mytomcat9
-    -v /home/hhb/hhbdata/test:/usr/local/apache-tomcat-9.0.8/webapps/test
-    -v /home/hhb/hhbdata/tomcat9logs:/usr/local/apache-tomcat-9.0.8/webapps/logs
-    --privileged=true
-    hhbtomcat9
-
-
-
-    docker run -p 12345:3306 --name mysql 
-    -v /home/hhb/mysql/conf:/etc/mysql/conf.d 
-    -v /home/hhb/mysql/logs:/usr/local/logs
-    -v /home/hhb/mysql/data:/var/lib/mysql 
-    -e MYSQL_ROOT_PASSWORD=123456 
-    -d mysql:latest
-
-
-    docker exec  a61170b45d0f /bin/bash
-    mysql -uroot -p
-
-    #备份dockers容器数据库数据到宿主机
-    dokcer exec a61170b45d0f sh -c 'exec mysqldump --all-databases -uroot -p"123456"' > /home/hhb/mysql/data/alll-databases.sql
-
-
-
-    docker pull redis 
-
-    docker run -p 6379:6379 
-    -v /home/hhb/redis/data:/usr/local/data
-    -v /home/hhb/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
-    -d redis:latest redis-server /usr/local/etc/redis/redis.conf
-    --appendonly yes
-
-    NOTE: 
-        - /home/hhb/redis/conf/redis.conf 为文件夹
-        - --appendonly yes 配置持久化
-
-    设置 /home/hhb/redis/conf/redis.conf/redis.conf
-
-    docker exec -it a61170b45d0f redis-cli
-
-
-
-
-docker push:
-
-    docker commit -a="hhb" -m="update" a61170b45d0f mycentos:1.1
-    docker tag a61170b45d0f registry.cn-hangzhou.aliyuncs.com/hehuabo/mycentos:1.1
-    docker push registry.cn-hangzhou.aliyuncs.com/hehuabo/mycentos:1.1
-
-    docker pull registry.cn-hangzhou.aliyuncs.com/hehuabo/mycentos:1.1  (公网下载镜像)
-
 ```
 
+### docker run
+```
+ docker run -d -p 8090:8080 --name mytomcat9
+ -v /home/hhb/hhbdata/test:/usr/local/apache-tomcat-9.0.8/webapps/test
+ -v /home/hhb/hhbdata/tomcat9logs:/usr/local/apache-tomcat-9.0.8/webapps/logs
+ --privileged=true
+ hhbtomcat9
+
+
+
+ docker run -p 12345:3306 --name mysql 
+ -v /home/hhb/mysql/conf:/etc/mysql/conf.d 
+ -v /home/hhb/mysql/logs:/usr/local/logs
+ -v /home/hhb/mysql/data:/var/lib/mysql 
+ -e MYSQL_ROOT_PASSWORD=123456 
+ -d mysql:latest
+
+
+ docker exec  a61170b45d0f /bin/bash
+ mysql -uroot -p
+
+ #备份dockers容器数据库数据到宿主机
+ dokcer exec a61170b45d0f sh -c 'exec mysqldump --all-databases -uroot -p"123456"' > /home/hhb/mysql/data/alll-databases.sql
+
+
+
+ docker pull redis 
+
+ docker run -p 6379:6379 
+ -v /home/hhb/redis/data:/usr/local/data
+ -v /home/hhb/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
+ -d redis:latest redis-server /usr/local/etc/redis/redis.conf
+ --appendonly yes
+
+ NOTE: 
+     - /home/hhb/redis/conf/redis.conf 为文件夹
+     - --appendonly yes 配置持久化
+
+ 设置 /home/hhb/redis/conf/redis.conf/redis.conf
+
+ docker exec -it a61170b45d0f redis-cli
+```
+
+<br>
+
+### docker push
+```
+ docker commit -a="hhb" -m="update" a61170b45d0f mycentos:1.1
+ docker tag a61170b45d0f registry.cn-hangzhou.aliyuncs.com/hehuabo/mycentos:1.1
+ docker push registry.cn-hangzhou.aliyuncs.com/hehuabo/mycentos:1.1
+
+ docker pull registry.cn-hangzhou.aliyuncs.com/hehuabo/mycentos:1.1  (公网下载镜像)
+```
 
 
 <br><br>
 
-拓展阅读：
+### 拓展阅读
+
 - [Best practices for using Docker Hub for CI/CD](https://www.docker.com/blog/best-practices-for-using-docker-hub-for-ci-cd/)
 - [Configure GitHub Actions For Docker](https://docs.docker.com/ci-cd/github-actions/)
