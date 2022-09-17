@@ -1,6 +1,6 @@
 # pytest.ini
 
-```console
+```
 [pytest]
 
 

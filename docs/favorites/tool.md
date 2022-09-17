@@ -1,3 +1,6 @@
+# tool
+
+
 ### 开发者工具
 
 - [VSCode](https://code.visualstudio.com/)
@@ -21,7 +24,7 @@
 - [Notepad++](https://notepad-plus-plus.org/downloads/)
 - [EmEditor](https://www.emeditor.com/)
 
-
+<br>
 
 ### 系统工具
 
@@ -45,14 +48,23 @@
 - [微信](https://weixin.qq.com/)
 - [TIM](https://tim.qq.com/)
 
-
+<br>
 
 ### VPN
 
 - [OpenConnect-GUI](https://github.com/openconnect/openconnect-gui/releases)
 - [Clash for Windows](https://docs.cfw.lbyczf.com/)
+- [熊猫](https://mxwljsq.top/)
+
+<br>
+
+### 浏览器插件
+
+- [Tampermonkey](https://www.tampermonkey.net/)
+- [letXPath](https://letcode.in/letxpath)
 
 
+<br>
 
 ### VSCode 插件
 

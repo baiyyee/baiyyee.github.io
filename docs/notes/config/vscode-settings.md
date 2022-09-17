@@ -1,6 +1,8 @@
-# ~/.vscode-server/data/Machine/settings.json
+# VSCode 配置
 
-```console
+
+### settings.json
+```
 {
     "python.venvPath": "~/.virtualenvs",
     "python.testing.pytestEnabled": true,

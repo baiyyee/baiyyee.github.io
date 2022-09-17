@@ -26,15 +26,15 @@ theme:
       primary: teal
       accent: amber
       toggle:
-        icon: material/toggle-switch-off-outline
-        name: 暗黑模式
+        icon: material/lightbulb
+        name: 浅色模式
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: teal
       accent: amber
       toggle:
-        icon: material/toggle-switch
-        name: 浅色模式
+        icon: material/lightbulb-outline
+        name: 暗黑模式
   font:
     text: Noto Serif Simplified Chinese
     code: Roboto Mono
@@ -123,6 +123,9 @@ nav:
           - sqlite: full-stack/tool/sqlite.md
           - maven: full-stack/tool/maven.md
 
+      - 算法:
+          - LeetCode: full-stack/algorithm/leetcode.md
+
   - 解决方案:
       - 思路:
           - xxx: tsg/xxx.md
@@ -140,16 +143,6 @@ nav:
           - xxx: tsg/xxx.md
 
   - 工作笔记:
-      - SOP:
-          - Git Flow: notes/sop/git-flow.md
-          - Test Plan: notes/sop/test-plan.md
-          - Test Case: notes/sop/test-case.md
-          - Test Issue: notes/sop/test-issue.md
-          - Test Report: notes/sop/test-report.md
-          - Test Review: notes/sop/test-review.md
-          - Test Manager: notes/sop/test-manager.md
-          - Automated Testing: notes/sop/test-automated.md
-
       - 配置:
           - 固定配置:
               - .pypirc: notes/config/pypirc.md
@@ -164,6 +157,16 @@ nav:
               - setup.py: notes/demo/setup-py.md
               - pytest.ini: notes/demo/pytest-ini.md
               - test.http: notes/demo/restclient-vscode.md
+
+      - SOP:
+          - Git Flow: notes/sop/git-flow.md
+          - Test Plan: notes/sop/test-plan.md
+          - Test Case: notes/sop/test-case.md
+          - Test Issue: notes/sop/test-issue.md
+          - Test Report: notes/sop/test-report.md
+          - Test Review: notes/sop/test-review.md
+          - Test Manager: notes/sop/test-manager.md
+          - Automated Testing: notes/sop/test-automated.md
 
       - 用户指导:
           - 如何通过硬盘安装Win系统？: notes/guideline/how-to-install-win-os.md

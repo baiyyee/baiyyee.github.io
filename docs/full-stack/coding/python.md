@@ -5,55 +5,6 @@
 ```python
 from functools import reduce
 
-def fib(n):
-    """斐波拉契数列"""
-    if n == 1:
-        return 1
-    elif n == 2:
-        return 2
-    else:
-        return fib(n - 1) + fib(n - 2)
-
-def fib2(n):
-    """斐波拉契数列"""
-    i, a, b = 0, 0, 1
-    while i < n:
-        yield b
-        a, b = b, a + b
-        i += 1
-
-for i in fib2(6):
-    print(i)
-
-def triangles(n):
-    """杨辉三角"""
-    L = [1]
-    i = 0
-    while i < n:
-        yield L
-        L = [1] + [L[i] + L[i + 1] for i in range(len(L) - 1)] + [1]
-        i += 1
-
-for i in triangles(6):
-    print(i)
-
-def sushu(n):
-    """素数"""
-    data = []
-    for i in range(1, n):
-        count = 0
-        for j in range(1, i + 1):
-            if i % j == 0:
-                count += 1
-                if count > 2:
-                    break
-        if count <= 2:
-            data.append(i)
-
-    return data
-
-print(sushu(20))
-
 def createCounter():
     """闭包"""
     count = 0
@@ -140,4 +91,20 @@ print(max(10, 1, 7, 6))
 
 # functools.partial的作用就是，把一个函数的某些参数给固定住（也就是设置默认值），返回一个新的函数，调用这个新函数会更简单
 
+```
+
+<br>
+
+### 日期转换
+```python
+from datetime import datetime as d
+
+format = "%Y-%m-%dT%H:%M:%S.%fZ"
+
+timestamp = 1528797322
+date_time = d.fromtimestamp(timestamp)
+print(date_time) # 2018-06-12 04:55:22
+
+date_time = date_time.strftime(format)
+print(date_time) # 2018-06-12T04:55:22.000000Z
 ```

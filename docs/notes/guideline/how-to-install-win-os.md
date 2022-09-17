@@ -1,7 +1,7 @@
 # 如何通过硬盘安装 Win 11 系统？
 
 
-## 前置条件
+### 前置条件
 > 
 > 1. 网络联通，可访问在线资源
 > 2. 系统至少包含两个分区，且硬盘可用空间充足
@@ -9,7 +9,7 @@
 
 <br>
 
-## 操作步骤
+### 操作步骤
 
 1.进入 [Win OS](https://www.microsoft.com/zh-cn/software-download/windows11/) 下载页，点击 `创建 Windows 11 安装 -> 立即下载` 下载 ISO 制作工具 [MediaCreationToolW11.exe](https://software-download.microsoft.com/download/pr/888969d5-f34g-4e03-ac9d-1f9786c69161/MediaCreationToolW11.exe)
 
