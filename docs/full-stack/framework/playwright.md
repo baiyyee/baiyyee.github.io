@@ -131,6 +131,100 @@ playwright show-trace trace.zip
 pytest --headed -slowmo=2000 --tracing retain-on-failure --video retain-on-failure --screenshot only-on-failure
 ```
 
+### 元素定位
+
+- CSS
+```
+<a _ngcontent-serverapp-c97="" class="button is-primary is-rounded is-small" href="/signup">Sign up</a>
+=> a[href='/signup']
+
+<button title="Disabled button" id="isDisabled" disabled="" class="button is-info">Disabled</button>
+=> button:has-text('Disabled')
+```
+
+- XPath
+```
+<input id="clearMe" value="Koushik Chatterjee" type="text" placeholder="Enter " class="input">
+=> //input[@value='Koushik Chatterjee']
+```
+
+- ID
+```
+<select id="country">
+    <option value="Argentina">Argentina</option>
+    <option value="Bolivia">Bolivia</option>
+    <option value="Brazil">Brazil</option>
+    <option value="Chile">Chile</option>
+    <option value="Colombia">Colombia</option>
+    <option value="Ecuador">Ecuador</option>
+    <option value="India">India</option>
+    <option value="Paraguay">Paraguay</option>
+    <option value="Peru">Peru</option>
+    <option value="Suriname">Suriname</option>
+    <option value="Uruguay">Uruguay</option>
+    <option value="Venezuela">Venezuela</option>
+</select>
+
+=> #country
+=> page.locator("#lang option").count()
+=> page.locator("#lang option").all_text_contents()
+```
+
+- Class
+
+```
+<div class="notification is-success"><p class="subtitle">You have selected Apple</p></div>
+=> div.notification.is-success
+```
+
+
+- Text
+```
+<button _ngcontent-serverapp-c56="" class="button is-primary">LOGIN</button>
+=> text=LOGIN
+```
+
+<br>
+
+### 元素属性
+
+- 元素位置
+
+```
+page.locator("#position").bounding_box() => {"x": 88, "y": 338, "width": 130, "height": 40}
+```
+
+- CSS样式
+```
+# 方式一：
+page.locator("#color").evaluate("element => {return window.getComputedStyle(element).getPropertyValue('background-color')}")
+
+# 方式二：
+expect(page.locator("#color")).to_have_css("background-color", "rgb(138, 77, 118)")
+```
+
+
+### Alert
+
+### Frame
+```
+//iframe
+
+# Locate element inside frame
+# Get frame using any other selector
+username = page.frame_locator('.frame-class').locator('#username-input')
+username.fill('John')
+
+
+# Get frame using the frame's name attribute
+frame = page.frame('frame-login')
+
+# Get frame using frame's URL
+frame = page.frame(url=r'.*domain.*')
+
+# Interact with the frame
+frame.fill('#username-input', 'John')
+```
 
 <br><br>
 
@@ -141,3 +235,4 @@ pytest --headed -slowmo=2000 --tracing retain-on-failure --video retain-on-failu
 - [WSLg](https://github.com/microsoft/wslg)
 - [playwright-pytest only supports the sync Playwright API at the moment](https://github.com/microsoft/playwright-pytest/issues/74#issuecomment-916001720)
 - [Solution: Custom conftest.py for async API support](https://github.com/microsoft/playwright-python/blob/main/tests/async/conftest.py)
+- [Playwright with TypeScript, Jest & Playwright test runner](https://www.youtube.com/playlist?list=PL699Xf-_ilW7EyC6lMuU4jelKemmS6KgD)

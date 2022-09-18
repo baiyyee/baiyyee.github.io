@@ -112,6 +112,7 @@ nav:
           - loadrunner: full-stack/stress/loadrunner.md
 
       - 常用工具:
+          - Python Package: full-stack/tool/python-package.md
           - markdown: full-stack/tool/markdown.md
           - wsl: full-stack/tool/wsl.md
           - pypi: full-stack/tool/pypi.md
