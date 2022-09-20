@@ -1,6 +1,5 @@
 # WeTest
 
-
 **WeTest** is a simple, yet useful, test toolkit.
 
 WeTest allows you to start an automated testing project extremely easily, like api test, macro support, tracker requests, testdata build, common clients connection...
@@ -294,6 +293,8 @@ WeTest is ready for the demands of building automation test project, for the nee
     - dict
     - list
     - schema
+    - file
+    - image
   - config
     - yaml
     - ini
@@ -313,10 +314,13 @@ WeTest is ready for the demands of building automation test project, for the nee
     - ip
     - url
     - useragent
+    - file mime type
   - notication
     - work wechat
     - wechat(todo)
     - email(todo)
+  - path
+    - all path related scenario
   - provider
     - dataframe & excel
     - read & output
@@ -329,7 +333,7 @@ WeTest is ready for the demands of building automation test project, for the nee
     - get redirect history
     - async request
     - bulk request
-    - upload
+    - upload file(s)
     - download
     - log response
   - testdata

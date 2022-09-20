@@ -24,6 +24,36 @@ print(counterA(), counterA(), counterA(), counterA(), counterA())
 
 <br>
 
+
+
+### 递归
+```python
+def recursive_query_file(path: str, pattern: str) -> list:
+
+    result = []
+
+    def recursive(path: str, pattern: str):
+        nonlocal result
+
+        path = Path(path)
+
+        result += filter_file(path, pattern)
+
+        sub_folders = [folder for folder in path.iterdir() if folder.is_dir()]
+
+        if sub_folders:
+            for folder in sub_folders:
+                recursive(folder, pattern)
+        else:
+            return result
+
+    recursive(path, pattern)
+
+    return result
+```
+
+<br>
+
 ### functools
 
 - 偏函数
