@@ -173,6 +173,7 @@ nav:
       - 用户指导:
           - 如何通过硬盘安装Win系统？: notes/guideline/how-to-install-win-os.md
           - 如何快速搭建一个个人网站？: notes/guideline/how-to-build-a-personal-website.md
+          - 如何将python文件打包成.exe？: notes/guideline/how-to-create-standalone-executables-for-python.md
 
       - 工具:
           - scoop: notes/tool/scoop.md

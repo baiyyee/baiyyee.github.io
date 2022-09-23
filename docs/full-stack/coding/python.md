@@ -210,3 +210,14 @@ data = list(range(1, 11))
 
 [m + n for m in 'ABC' for n in 'XYZ']
 ```
+
+
+### 小技巧
+```python
+# 判断是否为数字，可以用于int()转换场景中
+"123".isdigit()
+
+
+# 带T的日期格式
+format = "%Y-%m-%dT%H:%M:%S.%fZ" # 2018-06-12T04:55:22.000000Z
+```
