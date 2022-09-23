@@ -131,18 +131,12 @@ nav:
   - 解决方案:
       - 思路:
           - xxx: tsg/xxx.md
-          - xxx: tsg/xxx.md
-          - xxx: tsg/xxx.md
 
       - 代码:
           - xxx: tsg/xxx.md
-          - xxx: tsg/xxx.md
-          - xxx: tsg/xxx.md
 
       - 工具:
-          - xxx: tsg/xxx.md
-          - xxx: tsg/xxx.md
-          - xxx: tsg/xxx.md
+          - git: tsg/git.md
 
   - 工作笔记:
       - 配置:
