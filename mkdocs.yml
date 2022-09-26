@@ -75,6 +75,7 @@ nav:
           - linux: full-stack/coding/linux.md
           - java: full-stack/coding/java.md
           - go: full-stack/coding/go.md
+          - regex: full-stack/coding/regex.md
           - powershell: full-stack/coding/powershell.md
           - html: full-stack/coding/html.md
           - javascript: full-stack/coding/javascript.md
@@ -165,9 +166,9 @@ nav:
           - Automated Testing: notes/sop/test-automated.md
 
       - 用户指导:
-          - 如何通过硬盘安装Win系统？: notes/guideline/how-to-install-win-os.md
-          - 如何快速搭建一个个人网站？: notes/guideline/how-to-build-a-personal-website.md
-          - 如何将python文件打包成.exe？: notes/guideline/how-to-create-standalone-executables-for-python.md
+          - 如何通过硬盘安装Win系统?: notes/guideline/how-to-install-win-os.md
+          - 如何快速搭建一个个人网站?: notes/guideline/how-to-build-a-personal-website.md
+          - 如何将python文件打包成.exe?: notes/guideline/how-to-create-standalone-executables-for-python.md
 
       - 工具:
           - scoop: notes/tool/scoop.md
@@ -175,6 +176,7 @@ nav:
   - 收藏夹:
       - 工具: favorites/tool.md
       - 网站: favorites/site.md
+      - 文章: favorites/article.md
       - 阅读: favorites/book.md
       - 旅行: favorites/travel.md
 

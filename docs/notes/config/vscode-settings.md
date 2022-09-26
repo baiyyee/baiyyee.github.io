@@ -31,3 +31,95 @@
     "jupyter.debugJustMyCode": false
 }
 ```
+
+<br>
+
+### tasks.json
+```
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "pytest",
+            "type": "process",
+            "linux": {
+                "command": "${config:python.defaultInterpreterPath}",
+                "args": [
+                    "-m",
+                    "pytest",
+                    "-s",
+                    "${file}"
+                ]
+            }
+        },
+        {
+            "label": "collect",
+            "type": "process",
+            "linux": {
+                "command": "${config:python.defaultInterpreterPath}",
+                "args": [
+                    "-m",
+                    "pytest",
+                    "--collect-only"
+                ]
+            }
+        },
+        {
+            "label": "format",
+            "type": "process",
+            "linux": {
+                "command": "${config:python.defaultInterpreterPath}",
+                "args": [
+                    "-m",
+                    "black",
+                    "--line-length",
+                    "130",
+                    "-i",
+                    "${file}"
+                ]
+            }
+        },
+        {
+            "label": "clean-report",
+            "type": "shell",
+            "linux": {
+                "command": "rm",
+                "args": [
+                    "-r",
+                    "${workspaceRoot}/allure-result/"
+                ]
+            }
+        },
+        {
+            "label": "show-report",
+            "type": "shell",
+            "command": "allure",
+            "args": [
+                "serve",
+                "-h",
+                "0.0.0.0",
+                "-p",
+                "8080",
+                "${workspaceRoot}/allure-result/"
+            ]
+        },
+        {
+            "label": "run-server",
+            "type": "process",
+            "command": "${config:python.defaultInterpreterPath}",
+            "args": [
+                "-m",
+                "uvicorn",
+                "web.main:app",
+                "--reload",
+                "--debug"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/server"
+            }
+        }
+    ]
+}
+```

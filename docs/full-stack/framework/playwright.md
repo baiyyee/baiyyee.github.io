@@ -239,21 +239,34 @@ DEBUG=pw:api
 pytest -s
 ```
 
+
+<br>
+
+方式七：--debug
+```
+pytest --debug
+```
+
 ### 常用命令
 
 ```console
-playwright open example.com
+playwright open playwright.dev
 
-
-playwright codegen --save-storage=auth.json
-playwright codegen --load-storage=auth.json
-
+playwright codegen playwright.dev
+playwright codegen playwright.dev --save-storage=auth.json
+playwright codegen playwright.dev --load-storage=auth.json
+playwright codegen playwright.dev --viewport-size=800,600
+playwright codegen playwright.dev --device="iPhone 11"
+playwright codegen playwright.dev --color-scheme=dark
 
 playwright open --device="iPhone 11" wikipedia.org
 playwright open --viewport-size=800,600 --color-scheme=dark twitter.com
 playwright open --timezone="Europe/Rome" --geolocation="41.890221,12.492348" --lang="it-IT" maps.google.com
 
-
+playwright screenshot --help
+playwright screenshot --device="iPhone 11" --color-scheme=dark --wait-for-timeout=3000 twitter.com twitter-iphone.png
+playwright screenshot --full-page en.wikipedia.org wiki-full.png
+playwright pdf https://en.wikipedia.org/wiki/PDF wiki.pdf
 
 pytest --slowmo 100
 pytest --browser chromium
@@ -261,21 +274,6 @@ pytest --browser-channel chrome
 pytest --base-url http://localhost:8080
 playwright show-trace trace.zip
 pytest --headed -slowmo=2000 --tracing retain-on-failure --video retain-on-failure --screenshot only-on-failure
-
-
-
-# See command help
-playwright screenshot --help
-
-# Wait 3 seconds before capturing a screenshot after page loads
-playwright screenshot --device="iPhone 11" --color-scheme=dark --wait-for-timeout=3000 twitter.com twitter-iphone.png
-
-# Capture a full page screenshot
-playwright screenshot --full-page en.wikipedia.org wiki-full.png
-
-
-# 生成PDF
-playwright pdf https://en.wikipedia.org/wiki/PDF wiki.pdf
 ```
 
 <br>
@@ -284,6 +282,9 @@ playwright pdf https://en.wikipedia.org/wiki/PDF wiki.pdf
 ```python
 @pytest.fixture(scope="session")
 def browser_context_args(browser_context_args, playwright, user_info):
+    browser_context_args.update({"record_har_path": "config/record.har", "record_har_url_filter": "**/**"})
+    browser_context_args.update({"http_credentials": {"username": "bill", "password": "pa55w0rd"}})
+    browser_context_args.update({"proxy": {"server": "http://myproxy.com:3128"}})
     browser_context_args.update({"color_scheme": "dark"})
     browser_context_args.update({"user_agent": 'My user agent'})
     browser_context_args.update(playwright.devices['iPhone 12'])
@@ -304,71 +305,85 @@ def browser_context_args(browser_context_args, playwright, user_info):
 <br>
 
 ### 元素定位
+```python
+# Text selector
+page.locator('"Login"')
+page.locator("text=Log in")      # 模糊匹配，不区分大小写
+page.locator("text='Log in'")    # 精确匹配，区分大小写
+page.locator("text=/Log\s*in/i") # 正则匹配
 
-- CSS
-```
-<a _ngcontent-serverapp-c97="" class="button is-primary is-rounded is-small" href="/signup">Sign up</a>
-=> a[href='/signup']
+# CSS selector
+page.locator("button")
+page.locator("#nav-bar .contact-us-item")
 
-<button title="Disabled button" id="isDisabled" disabled="" class="button is-info">Disabled</button>
-=> button:has-text('Disabled')
-```
+# Select by attribute, with css selector
+page.locator("[aria-label='Sign in']")
+page.locator("[data-test=login-button]")
+page.locator('css=[placeholder="Search GitHub"]')
+page.locator('[placeholder="Search GitHub"]')
+page.locator('css=nav >> text=Login')
 
-- XPath
-```
-<input id="clearMe" value="Koushik Chatterjee" type="text" placeholder="Enter " class="input">
-=> //input[@value='Koushik Chatterjee']
-```
+# Combine css and text selectors
+page.locator("button", has_text="Sign up")
+page.locator("article:has-text('Playwright')")
+page.locator("#simpletable tr:has-text('Raj') td >> nth=3")
+page.locator("#nav-bar :text('Contact us')")          # 模糊匹配，不区分大小写
+page.locator("#nav-bar :text-is('Contact us')")       # 精确匹配，区分大小写
+page.locator("#nav-bar :text-matches('reg?ex', 'i')") # 正则匹配
 
-- ID
-```
-<select id="country">
-    <option value="Argentina">Argentina</option>
-    <option value="Bolivia">Bolivia</option>
-    <option value="Brazil">Brazil</option>
-    <option value="Chile">Chile</option>
-    <option value="Colombia">Colombia</option>
-    <option value="Ecuador">Ecuador</option>
-    <option value="India">India</option>
-    <option value="Paraguay">Paraguay</option>
-    <option value="Peru">Peru</option>
-    <option value="Suriname">Suriname</option>
-    <option value="Uruguay">Uruguay</option>
-    <option value="Venezuela">Venezuela</option>
-</select>
-
-=> #country
-=> page.locator("#lang option").count()
-=> page.locator("#lang option").all_text_contents()
-```
-
-- Class
-
-```
-<div class="notification is-success"><p class="subtitle">You have selected Apple</p></div>
-=> div.notification.is-success
-```
-
-
-- Text
-```
-<button _ngcontent-serverapp-c56="" class="button is-primary">LOGIN</button>
-=> text=LOGIN
-```
-```
-page.locator("text=Submit")
-page.locator("text=Sign up").click()
-page.locator("button.sign-up").click()
-page.locator("data-testid=sign-up").click()
-page.locator('button').click()
-page.locator('button').first.click() 
-page.locator('button').count()
-page.locator("button", has_text="Sign up").click()
+# Element that contains another, with css selector
+page.locator(".item-description:has(.item-promo-banner)")
+page.locator("article:has(div.promo)")
 page.locator("article", has=page.locator("button.subscribe"))
+
+# Filter
+page.locator(".row").locator(":scope", has_text="Hello")
+
+# Selecting elements matching one of the conditions
+page.locator('button:has-text("Log in"), button:has-text("Sign in")')
+page.locator("//span[contains(@class, 'spinner__loading')]|//div[@id='confirmation']")
+
+# Selecting based on layout, with css selector
+page.locator("input:right-of(:text('Username'))")
+page.locator("[type=radio]:left-of(:text('Label 3'))")
+page.locator("input:above(:text('Username'))")
+page.locator("input:below(:text('Username'))")
+page.locator("button:near(.promo-card)")
+page.locator("button:near(:text('Username'), 120)") # matches a button that is at most 120 pixels away from the element with the text "Username"
+
+# Only visible elements, with css selector
+page.locator(".login-button:visible")
+page.locator(".login-button >> visible=true")
+page.locator("a >> text=Sign up")
+
+# Pick n-th match
+page.locator(":nth-match(:text('Buy'), 3)")
+
+# N-th element selector
+page.locator("button >> nth=0")
+
+# XPath selector
+page.locator("xpath=//button")
+
+# id, data-testid, data-test-id, data-test selectors
+page.locator('id=username')
+page.locator('data-test-id=submit')
+
+# Parent selector
+parent_locator = element_locator.locator('..')
+
+# Chaining selectors
 page.locator("tr")
     .filter(has_text="text in column 1")
     .filter(has=page.locator("tr", has_text="column 2 button"))
-    .screenshot()
+
+page.locator("css=article >> css=.bar > .baz >> css=span[attr=value]")
+page.locator("css=article >> text=Hello")
+page.locator("*css=article >> text=Hello") # Intermediate matches
+
+# Selecting elements in Shadow DOM
+page.locator("article div")         # Search for both Light DOM and Shadow DOM
+page.locator(":light(article div)") # Search Only for Light
 ```
 
 <br>
@@ -407,9 +422,6 @@ for i in range(count):
 # Note: the code inside evaluateAll runs in page, you can call any DOM apis there.
 texts = rows.evaluate_all("list => list.map(element => element.textContent)")
 ```
-
-
-### Alert
 
 ### Frame
 ```python
@@ -516,6 +528,40 @@ while page.locator(".paginate_button.next").get_attribute("class") != "paginate_
     rows = page.locator("#advancedtable tr")
     cols = page.locator("#advancedtable td")
     datas += [[cols.nth(i).text_content() for i in range(j, cols.count(), count)] for j in range(0, rows.count())]
+```
+
+<br>
+
+### 上传&下载
+```python
+# Select one file
+page.locator('input#upload').set_input_files('myfile.pdf')
+
+# Select multiple files
+page.locator('input#upload').set_input_files(['file1.txt', 'file2.txt'])
+
+# Remove all the selected files
+page.locator('input#upload').set_input_files([])
+
+# Upload buffer from memory
+page.locator("input#upload").set_input_files(
+    files=[
+        {"name": "test.txt", "mimeType": "text/plain", "buffer": b"this is a test"}
+    ],
+)
+
+
+# Start waiting for the download
+with page.expect_download() as download_info:
+    # Perform the action that initiates download
+    page.locator("button#delayed-download").click()
+download = download_info.value
+# Wait for the download process to complete
+print(download.path())
+# Save downloaded file somewhere
+download.save_as("/path/to/save/download/at.txt")
+
+page.on("download", lambda download: print(download.path()))
 ```
 
 <br><br>
