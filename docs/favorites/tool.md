@@ -9,6 +9,7 @@
 - [CloudBerry Explorer for Amazon S3](https://cloudberry-explorer-for-amazon-s3.en.softonic.com/)
 - [Remote Desktop Connection Manager](https://docs.microsoft.com/en-us/sysinternals/downloads/rdcman)
 - [WinSCP](https://winscp.net/eng/index.php)
+- [Airtest](https://airtest.netease.com/)
 - [Xshell](https://www.xshell.com/zh/xshell/)
 - [Microsoft Edge](https://www.microsoft.com/en-us/edge)
 - [Google Chrome](https://www.google.com/chrome/)
@@ -29,6 +30,7 @@
 ### 系统工具
 
 - [uTools](https://www.u.tools/)
+- [Everything](https://www.voidtools.com/zh-cn/)
 - [7-Zip](https://www.7-zip.org/)
 - [Notion](https://www.notion.so/zh-cn)
 - [PotPlayer](https://potplayer.daum.net/)

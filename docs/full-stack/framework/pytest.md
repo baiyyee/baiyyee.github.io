@@ -2,6 +2,8 @@
 
 
 
+### 常用命令
+
 ```
 pytest Tips：
 
@@ -71,4 +73,153 @@ pytest -m "unittest" --alluredir=tests\report\allurereport   # 使用allure-pyte
 allure serve tests\report\allurereport                       # 查看 Allure 报告
 allure serve -h 0.0.0.0 -p 8080 ./allure-result              # 指定host和端口
 
+```
+
+<br>
+
+### Build-in Fixure
+```python
+@pytest.fixture(scope="session", autouse=True)
+def delete_output_dir(pytestconfig: Any) -> None:
+    output_dir = pytestconfig.getoption("--output")
+    if os.path.exists(output_dir):
+        try:
+            shutil.rmtree(output_dir)
+        except FileNotFoundError:
+            # When running in parallel, another thread may have already deleted the files
+            pass
+
+
+def pytest_generate_tests(metafunc: Any) -> None:
+    if "browser_name" in metafunc.fixturenames:
+        browsers = metafunc.config.option.browser or ["chromium"]
+        metafunc.parametrize("browser_name", browsers, scope="session")
+
+
+def pytest_configure(config: Any) -> None:
+    config.addinivalue_line(
+        "markers", "skip_browser(name): mark test to be skipped a specific browser"
+    )
+    config.addinivalue_line(
+        "markers", "only_browser(name): mark test to run only on a specific browser"
+    )
+
+
+# Making test result information available in fixtures
+# https://docs.pytest.org/en/latest/example/simple.html#making-test-result-information-available-in-fixtures
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+
+    outcome = yield
+    rep = outcome.get_result()
+    setattr(item, "rep_" + rep.when, rep)
+
+
+@pytest.fixture(scope="function", autouse=True)
+def screenshot_on_failure(context: BrowserContext, request: FixtureRequest):
+
+    yield context
+
+    # If requst.node is missing rep_call, then some error happened during execution
+    # that prevented teardown, but should still be counted as a failure
+    failed = request.node.rep_call.failed if hasattr(request.node, "rep_call") else True
+
+    if failed:
+        for arg in request.node.funcargs.values():
+            if isinstance(arg, App):
+                allure.attach(body=arg.page.screenshot(), name="screenshot", attachment_type=allure.attachment_type.PNG)
+
+
+def _get_skiplist(item: Any, values: List[str], value_name: str) -> List[str]:
+    skipped_values: List[str] = []
+    # Allowlist
+    only_marker = item.get_closest_marker(f"only_{value_name}")
+    if only_marker:
+        skipped_values = values
+        skipped_values.remove(only_marker.args[0])
+
+    # Denylist
+    skip_marker = item.get_closest_marker(f"skip_{value_name}")
+    if skip_marker:
+        skipped_values.append(skip_marker.args[0])
+
+    return skipped_values
+
+
+def pytest_runtest_setup(item: Any) -> None:
+    if not hasattr(item, "callspec"):
+        return
+    browser_name = item.callspec.params.get("browser_name")
+    if not browser_name:
+        return
+
+    skip_browsers_names = _get_skiplist(
+        item, ["chromium", "firefox", "webkit"], "browser"
+    )
+
+    if browser_name in skip_browsers_names:
+        pytest.skip("skipped for this browser: {}".format(browser_name))
+
+
+def pytest_addoption(parser):
+    parser.addoption(
+        "--cmdopt", action="store", default="type1", help="my option: type1 or type2"
+    )
+
+
+@pytest.fixture
+def cmdopt(request):
+    return request.config.getoption("--cmdopt")
+    
+
+def pytest_addoption(parser):
+    parser.addini("base_url", help="base url of site under test", default="https://letcode.in")
+
+
+def pytest_addoption(parser: Any) -> None:
+    group = parser.getgroup("playwright", "Playwright")
+    group.addoption(
+        "--browser",
+        action="append",
+        default=[],
+        help="Browser engine which should be used",
+        choices=["chromium", "firefox", "webkit"],
+    )
+    group.addoption(
+        "--headed",
+        action="store_true",
+        default=False,
+        help="Run tests in headed mode.",
+    )
+    group.addoption(
+        "--browser-channel",
+        action="store",
+        default=None,
+        help="Browser channel to be used.",
+    )
+    group.addoption(
+        "--slowmo",
+        default=0,
+        type=int,
+        help="Run tests with slow mo",
+    )
+    group.addoption(
+        "--device", default=None, action="store", help="Device to be emulated."
+    )
+    group.addoption(
+        "--output",
+        default="test-results",
+        help="Directory for artifacts produced by tests, defaults to test-results.",
+    )
+    group.addoption(
+        "--tracing",
+        default="off",
+        choices=["on", "off", "retain-on-failure"],
+        help="Whether to record a trace for each test.",
+    )
+
+
+@pytest.fixture(scope="session")
+def browser_channel(pytestconfig: Any) -> Optional[str]:
+    return pytestconfig.getoption("--browser-channel")
 ```

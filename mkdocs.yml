@@ -84,6 +84,7 @@ nav:
       - 测试框架:
           - pytest: full-stack/framework/pytest.md
           - playwright: full-stack/framework/playwright.md
+          - airtest: full-stack/framework/airtest.md
           - allure: full-stack/framework/allure.md
           - fastapi: full-stack/framework/fastapi.md
           - testng: full-stack/framework/testng.md
@@ -138,6 +139,7 @@ nav:
 
       - 工具:
           - git: tsg/git.md
+          - pytest: tsg/pytest.md
 
   - 工作笔记:
       - 配置:
