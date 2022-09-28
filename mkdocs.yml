@@ -118,6 +118,7 @@ nav:
           - markdown: full-stack/tool/markdown.md
           - wsl: full-stack/tool/wsl.md
           - pypi: full-stack/tool/pypi.md
+          - adb: full-stack/tool/adb.md
           - fiddler: full-stack/tool/fiddler.md
           - postman: full-stack/tool/postman.md
           - redis: full-stack/tool/redis.md
