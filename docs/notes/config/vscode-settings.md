@@ -6,7 +6,6 @@
 {
     "python.venvPath": "~/.virtualenvs",
     "python.testing.pytestEnabled": true,
-    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
     "fileheader.Author": "Huabo He",
     "fileheader.LastModifiedBy": "Huabo He",
     "python.analysis.completeFunctionParens": true,
@@ -28,7 +27,9 @@
     ],
     "python.languageServer": "Pylance",
     "git.inputValidationSubjectLength": 100,
-    "jupyter.debugJustMyCode": false
+    "jupyter.debugJustMyCode": false,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true
 }
 ```
 

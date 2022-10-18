@@ -22,9 +22,11 @@
 
 ### 工具
 
+- [鸠摩搜索](https://www.jiumodiary.com/)
 - [UA 解析](http://whatsmyuseragent.org/)
 - [油猴脚本库](https://greasyfork.org/zh-CN)
 - [HAR Analyzer](https://toolbox.googleapps.com/apps/har_analyzer/)
+- [邮编查询](https://www.youbianku.com/)
 
 <br>
 

@@ -128,6 +128,9 @@ nav:
           - sqlite: full-stack/tool/sqlite.md
           - maven: full-stack/tool/maven.md
 
+      - Wiki:
+          - 网络: full-stack/wiki/network.md
+
       - 算法:
           - LeetCode: full-stack/algorithm/leetcode.md
 
@@ -176,14 +179,17 @@ nav:
       - 工具:
           - scoop: notes/tool/scoop.md
 
+      - Tips:
+          - tips: notes/tips/tips.md
+
   - 收藏夹:
       - 工具: favorites/tool.md
       - 网站: favorites/site.md
       - 文章: favorites/article.md
-      - 阅读: favorites/book.md
-      - 旅行: favorites/travel.md
 
   - 白夜:
+      - 清单: baiye/list.md
+      - 诗集: baiye/poetry.md
       - 摘抄本: baiye/reference.md
 
   - 关于我: about.md

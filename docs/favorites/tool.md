@@ -46,6 +46,7 @@
 - [EV录屏](https://www.ieway.cn/evcapture.html)
 - [火绒](https://www.huorong.cn/)
 - [极速PDF阅读器](https://jisupdf.com/)
+- [PotPlayer](https://daumpotplayer.com/download/)
 - [飞书](https://www.feishu.cn/)
 - [微信](https://weixin.qq.com/)
 - [TIM](https://tim.qq.com/)

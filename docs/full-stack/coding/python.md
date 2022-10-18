@@ -173,6 +173,24 @@ print(date_time) # 2018-06-12T04:55:22.000000Z
 
 <br>
 
+### 列表
+```python
+a = ["A","B","C"]
+
+a[0]
+a[-1]
+a[::-1]
+
+a.insert(0,"1")
+
+a.pop(1)
+a.pop()
+
+
+```
+
+<br>
+
 ### 字典
 ```python
 a = {'device_type': 'cisco_ios', 'username': 'admin', 'password': 'cisco'}
@@ -221,3 +239,7 @@ data = list(range(1, 11))
 # 带T的日期格式
 format = "%Y-%m-%dT%H:%M:%S.%fZ" # 2018-06-12T04:55:22.000000Z
 ```
+
+
+### 相关拓展
+- [Python语言规范](https://zh-google-styleguide.readthedocs.io/en/latest/google-python-styleguide/python_language_rules/)
