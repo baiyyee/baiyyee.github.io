@@ -1,7 +1,7 @@
 # TestBase
 
 
-**TestBase** is a scaffold project to speed up your automated testing process.
+<a href="https://github.com/baiyyee/TestBase" target="_blank">**TestBase**</a> is a scaffold project to speed up your automated testing process.
 
 - System Environment (Opitonal)
   

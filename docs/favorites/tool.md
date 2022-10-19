@@ -71,7 +71,9 @@
 
 ### VSCode 插件
 
+- WSL
 - Docker
+- Remote - SSH
 - Excel Viewer
 - Git Graph
 - Markdown All in One
@@ -83,4 +85,9 @@
 - Task Explorer
 - Test Explorer UI
 - vscode-fileheader
+- Todo Tree
 - YAML
+- Svg Preview
+- Material Icon Theme
+- Microsoft Edge Tools for VS Code
+- One Dark Pro
