@@ -175,6 +175,17 @@ mysql> delete from pet where owner = "Diane";
 Query OK, 1 row affected (0.02 sec)
 
 
+-- 清空表数据
+truncate table pet;
+
+注意：
+    - 不能与where一起使用。
+    - truncate删除数据后是不可以rollback的。
+    - truncate删除数据后会重置Identity（标识列、自增字段），相当于自增列会被置为初始值，又重新从1开始记录，而不是接着原来的ID数
+    - truncate删除数据后不写服务器log，整体删除速度快
+    - truncate删除数据后不激活trigger(触发器)
+
+
 -- 删除表
 mysql> drop table myorder1;
 Query OK, 0 rows affected (0.03 sec)
@@ -445,10 +456,10 @@ mysql> desc user9;
 +-------+-------------+------+-----+---------+-------+
 
 mysql> insert into user9 values (1);
-ERROR 1136 (21S01): Column count doesn't match value count at row 1
 
 
 -- 修改字段属性 - 移除非空约束
+
 mysql> alter table user9 modify name varchar(20);
 Query OK, 0 rows affected (0.13 sec)
 Records: 0  Duplicates: 0  Warnings: 0
@@ -891,7 +902,7 @@ mysql> select truncate(12.34567, 2);
 
 
 -- 查询 成绩表 中 至少有2名学生选修并以3开头额课程的平均分数
-mysql> select cno,avg(degree),count(*) from score group by cno having count(cno) >=2 and cno like "0%";
+mysql> select cno,avg(degree),count(*) from score group by cno having count(cno) >=2 and cno like "3%";
 +-----+-------------+----------+
 | cno | avg(degree) | count(*) |
 +-----+-------------+----------+
@@ -1012,7 +1023,7 @@ mysql> select sno,score.cno,degree from score inner join course inner join teach
 +-----+-----+--------+
 
 
--- 查询某选修课的同学人数多余1人的教师姓名
+-- 查询某选修课的同学人数多于1人的教师姓名
 mysql> select tname from teacher inner join course inner join (select cno from score group by cno having count(sno) > 1) as  c on teacher.tno=course.tno and course.cno=c.cno;
 +-----------+
 | tname     |

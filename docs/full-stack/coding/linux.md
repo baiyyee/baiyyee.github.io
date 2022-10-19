@@ -683,6 +683,8 @@ find /test -iname test            # -iname 表示不区分大小写
 100MB = 102400kb = 204800数据块
 
 find / -size +204800              # 查找根目录下文件大小大于100M的文件 (+表示大于, - 表示小于, 不带符号表示等于)
+find / -size +100M
+
 find /home -user hhb              # 查找/home目录下所属用户为 hhb 的所有文件
 
 
@@ -702,6 +704,8 @@ f - 文件
 d - 目录
 l - 链接
 
+
+find /test -type f | xargs grep "keyword"
 
 find . -name test.txt -exec ls -l {} \;    # 在当前目录下查找test.txt文件并显示其详细信息({} 表示查询结果，\表示转义符，; 表示命令结束符号)
 
