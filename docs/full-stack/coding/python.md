@@ -141,8 +141,8 @@ while n < 10:
     print(n)
 ```
 
-### 闭包
 
+### 闭包
 ```python
 from functools import reduce
 
@@ -159,36 +159,6 @@ def createCounter():
 
 counterA = createCounter()
 print(counterA(), counterA(), counterA(), counterA(), counterA())
-```
-
-<br>
-
-
-
-### 递归
-```python
-def recursive_query_file(path: str, pattern: str) -> list:
-
-    result = []
-
-    def recursive(path: str, pattern: str):
-        nonlocal result
-
-        path = Path(path)
-
-        result += filter_file(path, pattern)
-
-        sub_folders = [folder for folder in path.iterdir() if folder.is_dir()]
-
-        if sub_folders:
-            for folder in sub_folders:
-                recursive(folder, pattern)
-        else:
-            return result
-
-    recursive(path, pattern)
-
-    return result
 ```
 
 <br>
@@ -250,6 +220,21 @@ print(sorted(["a", "A", "b", "X", "y", "M"], key=str.lower))
 print(sorted(["a", "A", "b", "X", "y", "M"], key=str.lower, reverse=True))
 print(sorted([("Bob", 75), ("Adam", 92), ("Bart", 66), ("Lisa", 88)], key=lambda x: x[0]))
 print(sorted([("Bob", 75), ("Adam", 92), ("Bart", 66), ("Lisa", 88)], key=lambda x: x[1], reverse=True))
+```
+
+<br>
+
+### 匿名函数
+```python
+def f(x):
+    return x * x
+
+lambda x: x * x
+
+list(map(lambda x: x * x, [1, 2, 3, 4, 5, 6, 7, 8, 9]))
+
+def build(x, y):
+    return lambda: x * x + y * y
 ```
 
 <br>
@@ -619,7 +604,6 @@ f2(*args, **kw) # a = 1 b = 2 c = 3 d = 88 kw = {'x': '#'}
 
 
 # 递归函数
-使用递归函数的优点是逻辑简单清晰，缺点是过深的调用会导致栈溢出。
 # Demo: 计算阶乘 fact(n)=n!=1×2×3×⋅⋅⋅×(n−1)×n=(n−1)!×n=fact(n−1)×n
 def fact(n):
     if n==1:
@@ -627,6 +611,30 @@ def fact(n):
     return n * fact(n - 1)
 
 fact(5)
+
+# Demo: 递归查询文件
+def recursive_query_file(path: str, pattern: str) -> list:
+
+    result = []
+
+    def recursive(path: str, pattern: str):
+        nonlocal result
+
+        path = Path(path)
+
+        result += filter_file(path, pattern)
+
+        sub_folders = [folder for folder in path.iterdir() if folder.is_dir()]
+
+        if sub_folders:
+            for folder in sub_folders:
+                recursive(folder, pattern)
+        else:
+            return result
+
+    recursive(path, pattern)
+
+    return result
 
 
 # 尾递归
@@ -650,39 +658,128 @@ def fact_iter(num, product):
 <br>
 
 ### 高级特性
-```python
-# 切片
-L = ['Michael', 'Sarah', 'Tracy', 'Bob', 'Jack']
 
-L[0:3] # ['Michael', 'Sarah', 'Tracy']
-L[:3]  # ['Michael', 'Sarah', 'Tracy']
+- 切片
 
-L[-2:]   # ['Bob', 'Jack']
-L[-2:-1] # ['Bob']
+    ```python
+    L = ['Michael', 'Sarah', 'Tracy', 'Bob', 'Jack']
 
-L = list(range(100))
-L[:10]   # 前10个数, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-L[-10:]  # 后10个数，[90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
-L[10:20] # 前 11 - 20 个数，[10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-L[:10:2] # 前10个数，每隔两个取一个，[0, 2, 4, 6, 8]
-L[::5]   # 所有数，每5个取一个，[0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
-L[::-1]  # 逆序输出列表所有数
-L[:]     # 所有数
+    L[0:3] # ['Michael', 'Sarah', 'Tracy']
+    L[:3]  # ['Michael', 'Sarah', 'Tracy']
 
-# 元组切片
-(0, 1, 2, 3, 4, 5)[:3] # (0, 1, 2)
+    L[-2:]   # ['Bob', 'Jack']
+    L[-2:-1] # ['Bob']
 
-# 字符串切片
-'ABCDEFG'[:3]          # 'ABC'
+    L = list(range(100))
+    L[:10]   # 前10个数, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    L[-10:]  # 后10个数，[90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+    L[10:20] # 前 11 - 20 个数，[10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    L[:10:2] # 前10个数，每隔两个取一个，[0, 2, 4, 6, 8]
+    L[::5]   # 所有数，每5个取一个，[0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
+    L[::-1]  # 逆序输出列表所有数
+    L[:]     # 所有数
 
-# 使用切片完成 trim 函数（去除首尾空格）
-def trim(s):
-    while len(s) >= 1 and s[0] == ' ':
-        s = s[1:]
-    while len(s) >= 1 and s[-1:] == ' ':
-        s = s[:-1]
-    return s
-```
+    # 元组切片
+    (0, 1, 2, 3, 4, 5)[:3] # (0, 1, 2)
+
+    # 字符串切片
+    'ABCDEFG'[:3]          # 'ABC'
+
+    # 使用切片完成 trim 函数（去除首尾空格）
+    def trim(s):
+        while len(s) >= 1 and s[0] == ' ':
+            s = s[1:]
+        while len(s) >= 1 and s[-1:] == ' ':
+            s = s[:-1]
+        return s
+    ```
+
+- 迭代
+
+    如果给定一个list或tuple，我们可以通过for循环来遍历这个list或tuple，这种遍历我们称为迭代（Iteration）。
+
+    ```python
+    for i in range(10):
+        print(i)
+
+    for char in "ABCD":
+        print(char)
+
+    for i, value in enumerate(['A', 'B', 'C']):
+        print(i, value)
+    
+    from collections.abc import Iterable
+    isinstance("ABCD", Iterable)    # True
+    isinstance([1,2,3,4], Iterable) # True
+    isinstance(123, Iterable)       # False
+    ```
+
+- 生成器(generator)
+
+    在Python中，这种一边循环一边计算的机制，称为生成器：generator。要创建一个generator，有很多种方法。第一种方法很简单，只要把一个列表生成式的[]改成()，就创建了一个generator
+
+    ```python
+    L = [x * x for x in range(10)] # 列表
+    g = (x * x for x in range(10)) # 生成器
+
+    for v in g:
+        print(v)
+
+
+    # 斐波拉契数列(Fibonacci)
+    def fib(data):
+        n, a, b = 0, 0, 1
+        
+        while n < data:
+            yield b
+            a, b = b, a + b
+            n = n + 1
+
+    # 如果一个函数定义中包含yield关键字，那么这个函数就不再是一个普通函数，而是一个generator函数，调用一个generator函数将返回一个generator
+
+    # 杨辉三角
+              1
+             / \
+            1   1
+           / \ / \
+          1   2   1
+         / \ / \ / \
+        1   3   3   1
+       / \ / \ / \ / \
+      1   4   6   4   1
+     / \ / \ / \ / \ / \
+    1   5   10  10  5   1
+
+    def triangles(data):
+        n = 0
+        L = [1]
+
+        while n < data:
+            yield L
+            L = [1] + [L[n] + L[n+1] for n in range(len(L) - 1)] + [1]
+            n = n + 1
+    ```
+
+- 迭代器
+
+    可以被next()函数调用并不断返回下一个值的对象称为迭代器：Iterator
+
+    ```python
+    from collections.abc import Iterator
+
+    isinstance((x for x in range(10)), Iterator) # True
+    isinstance([], Iterator)                     # False
+    isinstance({}, Iterator)                     # False
+    isinstance('abc', Iterator)                  # False
+
+    # 生成器都是Iterator对象，但list、dict、str虽然是Iterable，却不是Iterator
+    # 把list、dict、str等Iterable变成Iterator可以使用iter()函数
+    isinstance(iter([]), Iterator)    # True
+    isinstance(iter('abc'), Iterator) # True
+    ```
+    > NOTE:
+    >
+    > Iterator甚至可以表示一个无限大的数据流，例如全体自然数。而使用list是永远不可能存储全体自然数的
 
 <br>
 
@@ -697,7 +794,202 @@ data = list(range(1, 11))
 [x if x % 2 == 0 else -x for x in range(1, 11)]
 
 [m + n for m in 'ABC' for n in 'XYZ']
+
+import os
+[d for d in os.listdir('.')]
 ```
+
+<br>
+
+### 面向对象编程
+
+- 类和实例
+    ```python
+    class Student(object):
+
+        def __init__(self, name, score):
+            self.name = name
+            self.score = score
+
+
+    bart = Student('Bart Simpson', 59)
+    ```
+
+- 继承和多态
+    ```python
+    class Animal(object):
+        def run(self):
+            print('Animal is running...')
+
+    class Dog(Animal):
+
+        def run(self):
+            print('Dog is running...')
+
+    class Cat(Animal):
+
+        def run(self):
+            print('Cat is running...')
+
+
+    # 新增一个Animal的子类，不必对run_twice()做任何修改，实际上，任何依赖Animal作为参数的函数或者方法都可以不加修改地正常运行，原因就在于多态
+    def run(animal):
+        animal.run()
+
+    run(Animal()) # Animal is running...
+    run(Dog())    # Dog is running...
+    run(Cat())    # Cat is running...
+    ```
+
+- 实例属性和类属性
+    ```python
+    class Student(object):
+        country = "China"
+
+        def __init__(self, name):
+            self.name = name
+    ```
+    
+    > NOTE:
+    >
+    > 在编写程序的时候，千万不要对实例属性和类属性使用相同的名字，因为相同名称的实例属性将屏蔽掉类属性，但是当你删除实例属性后，再使用相同的名称，访问到的将是类属性
+
+- 多重继承(MixIn)
+
+    MixIn的目的就是给一个类增加多个功能，这样，在设计类的时候，我们优先考虑通过多重继承来组合多个MixIn的功能，而不是设计多层次的复杂的继承关系。
+
+    ```python
+    class Animal(object):
+        pass
+
+    # 大类:
+    class Mammal(Animal):
+        pass
+
+    class Bird(Animal):
+        pass
+
+    # 各种动物:
+    class Dog(Mammal):
+        pass
+
+    class Bat(Mammal):
+        pass
+
+    class Parrot(Bird):
+        pass
+
+    class Ostrich(Bird):
+        pass
+
+
+    class RunnableMixIn(object):
+        def run(self):
+            print('Running...')
+
+    class FlyableMixIn(object):
+        def fly(self):
+            print('Flying...')
+
+
+    class Dog(Mammal, RunnableMixIn, CarnivorousMixIn):
+        pass
+    ```
+
+- 枚举类(Enum)
+
+    Enum可以把一组相关常量定义在一个class中，且class不可变，而且成员可以直接比较。
+
+    ```python
+    from enum import Enum, unique
+
+    class Gender(Enum):
+        Male = 0
+        Female = 1
+        
+    # @unique装饰器可以帮助我们检查保证没有重复值
+    @unique
+    class Weekday(Enum):
+        Sun = 0
+        Mon = 1
+        Tue = 2
+        Wed = 3
+        Thu = 4
+        Fri = 5
+        Sat = 6
+
+
+    print(Weekday.Tue)       # Weekday.Tue
+    print(Weekday['Tue'])    # Weekday.Tue
+    print(Weekday.Tue.name)  # Tue
+    print(Weekday.Tue.value) # 2
+    print(Weekday(1))        # Weekday.Mon
+
+
+    for data in Weekday:
+        print(data.name, data.value)
+    ```
+
+- 异常处理
+    ```python
+    try:
+        print('try...')
+        r = 10 / int('2')
+        print('result:', r)
+    except ValueError as e:
+        print('ValueError:', e)
+    except ZeroDivisionError as e:
+        print('ZeroDivisionError:', e)
+    else:
+        print('no error!')
+    finally:
+        print('finally...')
+    print('END')
+
+
+    # 自定义异常和抛出异常
+    class FooError(ValueError):
+        pass
+
+    def foo(s):
+        n = int(s)
+        if n==0:
+            raise FooError('invalid value: %s' % s)
+        return 10 / n
+
+    foo('0')
+    ```
+
+- __slots__
+    ```python
+    class Student(object):
+        __slots__ = ('name', 'age')
+    ```
+
+    > NOTE:
+    >
+    > Python允许在定义class的时候，定义一个特殊的__slots__变量，来限制该class实例能添加的属性
+
+- @property
+
+    ```python
+    class Student(object):
+
+        @property
+        def birth(self):
+            return self._birth
+
+        @birth.setter
+        def birth(self, value):
+            self._birth = value
+
+        @property
+        def age(self):
+            return 2015 - self._birth
+    ```
+    > NOTE:
+    >
+    > 只定义getter方法，不定义setter方法就是一个只读属性
 
 <br>
 
@@ -711,6 +1003,7 @@ data = list(range(1, 11))
 format = "%Y-%m-%dT%H:%M:%S.%fZ" # 2018-06-12T04:55:22.000000Z
 ```
 
+<br>
 <br>
 
 ### 相关拓展
