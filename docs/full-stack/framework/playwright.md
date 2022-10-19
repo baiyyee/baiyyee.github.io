@@ -392,12 +392,12 @@ page.locator(":light(article div)") # Search Only for Light
 
 - 元素位置
 
-```
+```python
 page.locator("#position").bounding_box() => {"x": 88, "y": 338, "width": 130, "height": 40}
 ```
 
 - CSS样式
-```
+```python
 # 方式一：
 page.locator("#color").evaluate("element => {return window.getComputedStyle(element).getPropertyValue('background-color')}")
 
@@ -406,7 +406,7 @@ expect(page.locator("#color")).to_have_css("background-color", "rgb(138, 77, 118
 ```
 
 ### 元素列表
-```
+```python
 # Locate elements, this locator points to a list.
 rows = page.locator("table tr")
 

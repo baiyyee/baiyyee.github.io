@@ -1,6 +1,6 @@
 # pytest.ini
 
-```
+```ini
 [pytest]
 
 

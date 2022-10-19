@@ -42,6 +42,13 @@ theme:
 plugins:
   - search
 
+markdown_extensions:
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.betterem
+  - pymdownx.highlight
+  - pymdownx.superfences
+
 extra:
   homepage: https://baiyyee.github.io
   generator: false

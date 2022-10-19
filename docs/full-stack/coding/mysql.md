@@ -89,7 +89,7 @@ Database changed
 <br>
 
 ### 数据表操作
-```
+```sql
 -- 创建数据表
 mysql> create table pet (name varchar(20), owner varchar(20), species varchar(20), sex char(1), birth date, death date);
 Query OK, 0 rows affected (0.19 sec)
@@ -188,7 +188,7 @@ Query OK, 1 row affected (0.02 sec)
 <br>
 
 ### mysql 约束
-```
+```sql
 -- 主键约束(primary key): 唯一确定一张表中的一条记录，主键约束字段不重复且不为空
 
 mysql> create table user(id int primary key, name varchar(20));
@@ -541,7 +541,7 @@ ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constrai
 <br>
 
 ### 数据库范式
-```
+```sql
 -- 第一范式：数据表中的所有字段都是不可分割的原子值
 
 mysql> create table student2 (id int primary key, name varchar(20), address varchar(30));
@@ -624,7 +624,7 @@ create table customer (id int primary key, name varchar(20), customer_phone varc
 <br>
 
 ### mysql 查询
-```
+```sql
 -- 学生表
 create table student4 (sno varchar(20) primary key, sname varchar(20) not null, ssex varchar(10) not null, sbirthday datetime, class varchar(20));
 insert into student4 values ("001", "张三", "男", "1990-01-01", "一班"), ("002", "李四", "女", "1990-02-02", "二班"), ("003", "王五", "男", "1990-03-03", "三班"), ("004", "赵六", "女", "1990-04-04", "四班");
@@ -1381,7 +1381,7 @@ mysql> select * from person where id in (1,2) union all select * from person whe
 <br>
 
 ### mysql 事务
-```
+```sql
 -- mysql 中，事务其实是一个最小的不可分割的工作单元。事务能保证业务的完整性
 
 -- 比如银行转账：

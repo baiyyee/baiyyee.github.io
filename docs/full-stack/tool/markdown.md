@@ -314,3 +314,4 @@ Docker 一般是部署到Linux[^linux]服务器上。
 
 - [Markdown 基本语法](http://markdown.p2hp.com/basic-syntax/index.html)
 - [Markdown 扩展语法](http://markdown.p2hp.com/extended-syntax/index.html#fenced-code-blocks)
+- [Markdown 语法高亮](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md)

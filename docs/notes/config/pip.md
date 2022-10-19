@@ -2,7 +2,7 @@
 
 
 ### 设置 pip 源
-```
+```ini
 [global]
 index-url = https://mirrors.aliyun.com/pypi/simple/
 extra-index-url = https://pypi.tuna.tsinghua.edu.cn/simple/, https://pypi.python.org/simple

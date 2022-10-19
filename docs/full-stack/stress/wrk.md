@@ -2,7 +2,7 @@
 
 
 ### 安装
-```
+```console
 git clone https://github.com/wg/wrk.git
 apt-get -y install gcc
 cd wrk
@@ -13,7 +13,7 @@ cp wrk /usr/local/bin
 <br>
 
 ### wrk 命令
-```
+```console
 wrk -c4 -t4 -d5s --latency "https://www.baidu.com/s?wd=test"
 wrk -c4 -t4 -d5s -R 1000 --latency "https://www.baidu.com/s?wd=test"
 ```

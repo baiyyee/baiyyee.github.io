@@ -1,6 +1,6 @@
 # pyproject.toml
 
-```
+```ini
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
