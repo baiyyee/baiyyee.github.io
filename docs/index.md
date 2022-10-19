@@ -1,6 +1,6 @@
 # WeTest
 
-**WeTest** is a simple, yet useful, test toolkit.
+<a href="https://github.com/baiyyee/WeTest" target="_blank">**WeTest**</a> is a simple, yet useful, test toolkit.
 
 WeTest allows you to start an automated testing project extremely easily, like api test, macro support, tracker requests, testdata build, common clients connection...
 
