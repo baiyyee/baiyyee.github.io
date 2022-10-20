@@ -102,7 +102,6 @@ nav:
           - docker: full-stack/cicd/docker.md
           - github: full-stack/cicd/github.md
           - gitlab: full-stack/cicd/gitlab.md
-          - docker: full-stack/cicd/docker.md
           - jenkins: full-stack/cicd/jenkins.md
           - build: full-stack/cicd/build.md
 
