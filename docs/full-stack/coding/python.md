@@ -193,10 +193,138 @@ print(max(10, 1, 7, 6))
 
 - Counter
 
-```python
-from collections import Counter
+    ```python
+    from collections import Counter
 
-Counter('chenkc') # => Counter({'c': 2, 'h': 1, 'e': 1, 'n': 1, 'k': 1})
+    Counter('chenkc') # => Counter({'c': 2, 'h': 1, 'e': 1, 'n': 1, 'k': 1})
+    ```
+
+- namedtuple
+
+    ```python
+    from collections import namedtuple
+    Point = namedtuple('Point', ['x', 'y'])
+    p = Point(1, 2)
+    p.x # 1
+    p.y # 2
+    ```
+
+- deque
+
+    deque是为了高效实现插入和删除操作的双向列表，适合用于队列和栈
+
+    ```python
+    from collections import deque
+    q = deque(['a', 'b', 'c'])
+    q.append('x')
+    q.appendleft('y')
+    q # deque(['y', 'a', 'b', 'c', 'x'])
+    ```
+
+- defaultdict
+
+    使用dict时，如果引用的Key不存在，就会抛出KeyError。如果希望key不存在时，返回一个默认值，就可以用defaultdict
+    
+    ```python
+    from collections import defaultdict
+    dd = defaultdict(lambda: 'N/A')
+    dd['key1'] = 'abc'
+    dd['key1'] # key1存在, 'abc'
+    dd['key2'] # key2不存在，返回默认值 'N/A'
+    ```
+
+- OrderedDict
+
+    OrderedDict的Key会按照插入的顺序排列，不是Key本身排序
+
+    ```python
+    from collections import OrderedDict
+    d = dict([('a', 1), ('b', 2), ('c', 3)])
+    d # dict的Key是无序的, {'a': 1, 'c': 3, 'b': 2}
+    od = OrderedDict([('a', 1), ('b', 2), ('c', 3)])
+    od # OrderedDict的Key是有序的, OrderedDict([('a', 1), ('b', 2), ('c', 3)])
+    ```
+
+- ChainMap
+
+    ChainMap可以把一组dict串起来并组成一个逻辑上的dict。ChainMap本身也是一个dict，但是查找的时候，会按照顺序在内部的dict依次查找。
+
+    ```python
+    from collections import ChainMap
+
+    cmd = {"a": "cmd"}
+    env = {"a": "env"}
+    default = {"a": "default"}
+
+    param = ChainMap(cmd, env, default)
+    print(param["a"]) # cmd
+
+    param = ChainMap(env, cmd, default)
+    print(param["a"]) # env
+    ```
+
+    > NOTE:
+    > 
+    > ChainMap 可用于按特定优先级取参
+
+<br>
+
+### itertools
+```python
+import itertools
+
+
+natuals = itertools.count(1)
+for n in natuals:
+    print(n)
+
+
+cs = itertools.cycle('ABC') # 注意字符串也是序列的一种
+for c in cs:
+    print(c)
+
+
+ns = itertools.repeat('A', 3)
+for n in ns:
+    print(n)
+
+
+natuals = itertools.count(1)
+ns = itertools.takewhile(lambda x: x <= 10, natuals)
+list(ns) # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+for c in itertools.chain('ABC', 'XYZ'):
+     print(c) # 迭代效果：'A' 'B' 'C' 'X' 'Y' 'Z'
+
+
+for key, group in itertools.groupby('AAABBBCCAAA'):
+    print(key, list(group))
+
+# A ['A', 'A', 'A']
+# B ['B', 'B', 'B']
+# C ['C', 'C']
+# A ['A', 'A', 'A']
+
+or key, group in itertools.groupby('AaaBBbcCAAa', lambda c: c.upper()):
+    print(key, list(group))
+
+# A ['A', 'a', 'a']
+# B ['B', 'B', 'b']
+# C ['c', 'C']
+# A ['A', 'A', 'a']
+
+
+# 计算圆周率
+
+def pi(n):
+    odds = itertools.takewhile(lambda x: x < 2 * n, itertools.count(1, 2))    
+    fac = itertools.cycle([1, -1])
+
+    sum = 0   
+    for i in odds:
+        sum += 4 * next(fac) / i
+    return sum
 ```
 
 <br>
@@ -993,6 +1121,296 @@ import os
 
 <br>
 
+### IO 编程
+
+- 文件读写
+
+
+    | 模式 | 描述                                                                                                                                                             |
+    | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | t    | 文本模式 (默认)                                                                                                                                                  |
+    | x    | 写模式，新建一个文件，如果该文件已存在则会报错                                                                                                                   |
+    | b    | 二进制模式                                                                                                                                                       |
+    | +    | 打开一个文件进行更新(可读可写)                                                                                                                                   |
+    | U    | 通用换行模式（不推荐）                                                                                                                                           |
+    | r    | 以只读方式打开文件。文件的指针将会放在文件的开头。这是默认模式                                                                                                   |
+    | rb   | 以二进制格式打开一个文件用于只读。文件指针将会放在文件的开头。这是默认模式。一般用于非文本文件如图片等                                                           |
+    | r+   | 打开一个文件用于读写。文件指针将会放在文件的开头                                                                                                                 |
+    | rb+  | 以二进制格式打开一个文件用于读写。文件指针将会放在文件的开头。一般用于非文本文件如图片等                                                                         |
+    | w    | 打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件                                           |
+    | wb   | 以二进制格式打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。一般用于非文本文件如图片等   |
+    | w+   | 打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件                                             |
+    | wb+  | 以二进制格式打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。一般用于非文本文件如图片等     |
+    | a    | 打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入             |
+    | ab   | 以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入 |
+    | a+   | 打开一个文件用于读写。如果该文件已存在，文件指针将会放在文件的结尾。文件打开时会是追加模式。如果该文件不存在，创建新文件用于读写                                 |
+    | ab+  | 以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。如果该文件不存在，创建新文件用于读写                                             |
+
+    ```python
+    with open("./pytest.log", "r") as f:
+        for line in f:
+            print(line)
+
+    with open("./pytest.log", "r") as f:
+        print(f.read())
+
+    with open("./pytest.log", "r") as f:
+        while size := f.read(10):
+            print(size)
+
+    with open("./pytest.log", "r") as f:
+        lines = f.readlines()
+        for line in lines:
+            print(line)
+
+    
+    with open("./pytest.log", "r") as f:
+        line = f.readline()
+        while line:
+            print(line)
+            line = f.readline()
+
+    # 海象运算符
+    with open("./pytest.log", "r") as f:
+        while line := f.readline():
+            print(line)
+    ```
+
+- StringIO
+
+    ```python
+    import pandas
+    from io import StringIO
+    from PIL import Image, ImageDraw
+
+    log = """
+    1639362912.431	127.0.0.1	expires=Wed, 13-Dec-23 02:35:12 GMT; domain=127.0.0.1; path=/;
+    1639362912.520	127.0.0.1	expires=Wed, 13-Dec-23 02:35:12 GMT; domain=127.0.0.1; path=/;
+    1639362912.580	127.0.0.1	expires=Wed, 13-Dec-23 02:35:12 GMT; domain=127.0.0.1; path=/;
+    """
+
+    df = pandas.read_csv(StringIO(log))
+
+
+    f = StringIO()
+    f.write('hello')    # 5
+    f.write(' ')        # 1
+    f.write('world!')   # 6
+    print(f.getvalue()) # hello world!
+
+
+    f = StringIO('Hello!\nHi!\nGoodbye!')
+    while True:
+        s = f.readline()
+        if s == '':
+            break
+        print(s.strip())
+    ```
+
+- BytesIO
+
+    ```python
+    import requests
+    from io import BytesIO
+    from PIL import Image, ImageDraw
+
+
+    image = requests.get("https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png").content
+    image = BytesIO(image)
+
+    img = Image.open(image)
+    draw = ImageDraw.Draw(img)
+    draw.text((28, 26), "Baidu", fill=(0, 0, 0))
+    image_new = BytesIO()
+    img.save(image_new, "png")
+
+
+    f = BytesIO()
+    f.write('中文'.encode('utf-8')) # 6
+    print(f.getvalue())             # b'\xe4\xb8\xad\xe6\x96\x87'
+
+    f = BytesIO(b'\xe4\xb8\xad\xe6\x96\x87')
+    f.read() # b'\xe4\xb8\xad\xe6\x96\x87'
+    ```
+
+    > NOTE:
+    > 
+    > StringIO和BytesIO是在内存中操作str和bytes的方法，使得和读写文件具有一致的接口。
+
+- 序列化
+
+    我们把变量从内存中变成可存储或传输的过程称之为序列化，在Python中叫pickling，我们把变量从内存中变成可存储或传输的过程称之为序列化，在Python中叫pickling，
+
+    ```python
+    import pickle
+    d = dict(name='Bob', age=20, score=88)
+    pickle.dumps(d)
+
+    f = open('dump.txt', 'wb')
+    pickle.dump(d, f)
+    f.close()
+
+
+    f = open('dump.txt', 'rb')
+    d = pickle.load(f)
+    f.close()
+    d # {'age': 20, 'score': 88, 'name': 'Bob'}
+
+
+
+    # json 序列化
+    import json
+    resource = {"now": date.get_time(), "user_id": 0, "user_email": ""}
+    json.dumps(resource, indent=4, ensure_ascii=False)
+    with open(path, "w") as f:
+        json.dump(resource, f, indent=4, ensure_ascii=False)
+
+    # json 反序列化
+    with open(path, "r") as f:
+        resource = json.load(f)
+    ```
+
+<br>
+
+### 进程和线程
+
+- 子进程
+
+    ```python
+    import subprocess
+
+    print('$ nslookup www.python.org')
+    r = subprocess.call(['nslookup', 'www.python.org'])
+
+
+    print('$ nslookup')
+    p = subprocess.Popen(['nslookup'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    output, err = p.communicate(b'set q=mx\npython.org\nexit\n')
+    print(output.decode('utf-8'))
+    print('Exit code:', p.returncode)
+    ```
+
+- 多进程
+
+    ```python
+    import time
+    import random
+    from multiprocessing import Process
+
+
+    def func(name):
+        time.sleep(random.randrange(1,5))
+        print(f"我是{name}子进程")
+        
+    process_list = []
+    for i in range(3):
+        p = Process(target=func, args=(f"son{i+1}",))
+        p.start()
+        process_list.append(p)
+        
+    for i in process_list:
+        i.join()
+
+    print("主进程结束！")
+    ```
+
+- 进程间通信
+
+    ```python
+    # Queue
+    from multiprocessing import Process, Queue
+
+
+    def func(q):
+        q.put([1,2,3])
+        
+    Q = Queue(5)
+    for i in range(2):
+        process = Process(target=func, args=(Q,))
+        process.start()
+        process.join()
+        
+    print(Q.qsize())
+    print(Q.get()) 
+    print(Q.get())
+    print(Q.qsize())
+
+
+    # Managers
+    from multiprocessing import Process, Manager
+
+
+    def func(lst, dct):
+        for i in range(3):
+            lst.append(i)
+            
+        dct["name"] = "my"
+        
+    with Manager() as manager:
+        L = manager.list()
+        D = manager.dict()
+        
+        process = Process(target=func, args=(L, D))
+        process.start()
+        process.join()
+        
+        print(L)
+        print(D)
+
+    ```
+
+- ThreadLocal
+
+    一个ThreadLocal变量虽然是全局变量，但每个线程都只能读写自己线程的独立副本，互不干扰。ThreadLocal解决了参数在一个线程中各个函数之间互相传递的问题。
+
+
+    ```python
+    import threading
+        
+    # 创建全局ThreadLocal对象:
+    local_school = threading.local()
+
+    def process_student():
+        # 获取当前线程关联的student:
+        std = local_school.student
+        print('Hello, %s (in %s)' % (std, threading.current_thread().name))
+
+    def process_thread(name):
+        # 绑定ThreadLocal的student:
+        local_school.student = name
+        process_student()
+
+    t1 = threading.Thread(target= process_thread, args=('Alice',), name='Thread-A')
+    t2 = threading.Thread(target= process_thread, args=('Bob',), name='Thread-B')
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
+    ```
+
+<br>
+
+### 正则表达式
+```python
+import re
+re.match(r'^(\d+)(0*)$', '102300').groups()  # ('102300', '')
+
+re.findall(r"{{.*?}}", "{{abc}}") # ['{{abc}}']
+
+re.split(r'\s+', 'a b   c') # ['a', 'b', 'c']
+
+
+# match()方法判断是否匹配，如果匹配成功，返回一个Match对象，否则返回None。常见的判断方法就是：
+
+test = '用户输入的字符串'
+if re.match(r'正则表达式', test):
+    print('ok')
+else:
+    print('failed')
+```
+
+<br>
+
 ### 小技巧
 ```python
 # 判断是否为数字，可以用于int()转换场景中
@@ -1001,6 +1419,28 @@ import os
 
 # 带T的日期格式
 format = "%Y-%m-%dT%H:%M:%S.%fZ" # 2018-06-12T04:55:22.000000Z
+
+
+# 追加路径搜索范围
+import os
+import sys
+
+sys.path.append(os.getcwd())
+
+
+# 获取环境变量
+key = os.getenv("ROBOT_KEY")
+env = os.getenv("TEST_ENV", "dev")
+
+
+# 移除空格
+import re
+re.split(r'\s+', 'a b   c') # ['a', 'b', 'c']
+
+
+# 设置默认值
+def func(*args, **kwargs):
+    kwargs.setdefault("headers", {"User-Agent": const.USER_AGENT})
 ```
 
 <br>

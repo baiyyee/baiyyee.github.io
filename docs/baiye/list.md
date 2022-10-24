@@ -7,6 +7,7 @@
 - [ ] 微软的软件测试之道
 - [ ] How To Break Software
 - [ ] Exploratory Software Testing
+- [x] 10x 程序员工作法
 
 <br>
 
