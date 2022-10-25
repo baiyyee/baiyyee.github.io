@@ -213,6 +213,11 @@ docker rm e4c3013031f4      => 删除已停止的容器（若容器正在运行�
 docker rm e4c3013031f4 -f   => 强制删除容器（可删除正在运行的容器）
 
 
+# 容器和宿主机互相Copy文件
+docker cp e4c3013031f4:/home/test.txt /root/test.txt
+docker cp /root/test e4c3013031f4:/home/test.txt
+
+
 docker rm $(docker ps -aq)      => 方式1：删除所有容器
 docker ps -aq | xargs docker rm => 方式2：删除所有容器
 

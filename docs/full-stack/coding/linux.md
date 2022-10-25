@@ -827,10 +827,10 @@ lastlog -u 123 # 列出指定用户uid的最后登录信息
 traceroute www.baidu.com # 显示数据包到主机间的路径，用于跟踪路由信息
 
 
-netstat       # 显示网络相关信息
-netstat -tlun # 查看本机监听的端口
-netstat -an   # 查看本机的所有网络连接
-netstat -rn   # 查看本机路由表
+netstat                   # 显示网络相关信息
+netstat -tlunp | grep 80  # 查看本机监听的端口
+netstat -an               # 查看本机的所有网络连接
+netstat -rn               # 查看本机路由表
 ```
 
 <br>
