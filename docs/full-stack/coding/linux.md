@@ -872,6 +872,9 @@ find . -name test.txt -exec ls -l {} \;
 ps -aux | grep firefox | awk '{print $2}' | xargs kill -9
 
 killall firefox
+
+# 全局替换文件内的字符串
+sed -i "/s/{search_string}/{replace_string}/g" test.txt
 ```
 
 <br><br>

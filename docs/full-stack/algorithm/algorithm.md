@@ -195,6 +195,26 @@ def climbStairs(self, n: int) -> int:
     return result
 ```
 
+### 回文字符串
+```python
+import re
+
+def is_huiwenstring(data: str):
+    pattern = r"[a-zA-Z0-9]"
+    data = re.findall(pattern, data)
+
+    data = "".join([d.lower() for d in data])
+
+    if data[:] == data[::-1]:
+        return True
+    else:
+        return False
+
+
+data = "A man a plan a canal panama"
+is_huiwenstring(data)
+```
+
 <br><br>
 
 

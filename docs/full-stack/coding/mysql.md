@@ -1135,7 +1135,7 @@ mysql> select sname name,ssex sex,sbirthday birthday from student4 union (select
 -- NOTE: union 关键词后面的列名不需要使用别名，默认会使用union前一部分的列名
 
 
--- 查询成绩被该课程平均成绩低的同学的成绩表
+-- 查询成绩被该课程平均成绩的同学的成绩表
 
 -- 方法一：
 mysql> select score.sno,score.cno,score.degree,avg_degree from score inner join (select cno,avg(degree) as avg_degree from score group by cno) a on score.cno=a.cno where degree < avg_degree;

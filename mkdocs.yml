@@ -134,11 +134,14 @@ nav:
           - sqlite: full-stack/tool/sqlite.md
           - maven: full-stack/tool/maven.md
 
+      - 最佳实践:
+          - 设计模式: full-stack/best-practices/design-pattern.md
+
       - Wiki:
           - 网络: full-stack/wiki/network.md
 
       - 算法:
-          - LeetCode: full-stack/algorithm/leetcode.md
+          - Algorithm: full-stack/algorithm/algorithm.md
 
   - 解决方案:
       - 思路:
