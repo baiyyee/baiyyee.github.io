@@ -221,6 +221,8 @@ docker cp /root/test e4c3013031f4:/home/test.txt
 docker rm $(docker ps -aq)      => 方式1：删除所有容器
 docker ps -aq | xargs docker rm => 方式2：删除所有容器
 
+docker network ls               => 列出容器网桥
+
 
 退出容器：
     exit         => 关闭容器并退出
@@ -235,11 +237,12 @@ docker exec -t 84013b0e931c /bin/bash             => 进入容器并执行/bin/b
 
 docker top f67589c50f57                           => 查看容器内运行的进程信息
 
-docker inspect f67589c50f57                       => 查看容器内部细节
+docker inspect {docker_id}                        => 查看容器内部细节
+docker inspace {docker_name}
 
 docker cp 84013b0e931c:/tmp/hhb.txt .             => 将容器内文件 /tmp/hhb.txt COPY到宿主机器当前目录下
 
-
+docker volumn ls                                  => 列出容器卷
 
 
 docker logs
@@ -676,6 +679,55 @@ docker history  => 列出镜像的变更历史
  docker pull registry.cn-hangzhou.aliyuncs.com/hehuabo/mycentos:1.1  (公网下载镜像)
 ```
 
+<br>
+
+### 容器编排
+
+
+```
+1.安装
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.2.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+2.查看版本
+docker-compose -v
+
+3.编写 docker-compose.yml 文件
+version: '3.8'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - 8000:8080
+    volumes:
+      - /home/hhb/dev/docker_volumns/jenkins:/var/jenkins_home
+
+4.启动容器
+docker-compose up
+
+5.访问UI界面查看效果 http://127.0.0.1:8000
+
+6.设置Jenkins密码
+cat /home/hhb/dev/docker_volumns/jenkins/secrets/initialAdminPassword
+```
+
+<br>
+
+### Docker 可视化工具
+
+```
+1.安装 Portainer (官网安装说明：https://www.portainer.io/installation/)
+docker pull portainer/portainer
+
+2.新建容器卷
+docker volume create portainer_data
+
+3.运行容器
+docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data_portainer/portainer
+
+4.访问UI界面 http://localhost:9000
+
+```
+
 
 <br><br>
 
@@ -683,3 +735,8 @@ docker history  => 列出镜像的变更历史
 
 - [Best practices for using Docker Hub for CI/CD](https://www.docker.com/blog/best-practices-for-using-docker-hub-for-ci-cd/)
 - [Configure GitHub Actions For Docker](https://docs.docker.com/ci-cd/github-actions/)
+- [Jenkins Docker](https://www.jenkins.io/doc/book/installing/docker/)
+- [How to Install and Run Jenkins With Docker Compose](https://www.cloudbees.com/blog/how-to-install-and-run-jenkins-with-docker-compose)
+- [GitLab Docker images](https://docs.gitlab.com/ee/install/docker.html)
+- [Docker - 从入门到实践](https://yeasy.gitbook.io/docker_practice/)
+- [Docker&Docker-Compose 实战!](https://www.bilibili.com/video/BV1wQ4y1Y7SE/?p=2)

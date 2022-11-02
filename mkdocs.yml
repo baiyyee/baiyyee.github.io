@@ -98,6 +98,7 @@ nav:
           - vue: full-stack/framework/vue.md
 
       - CI/CD:
+          - cicd: full-stack/cicd/cicd.md
           - git: full-stack/cicd/git.md
           - docker: full-stack/cicd/docker.md
           - github: full-stack/cicd/github.md
@@ -165,6 +166,8 @@ nav:
 
           - 配置样例:
               - Dockerfile: notes/demo/dockerfile.md
+              - Docker-compose.yml: notes/demo/docker-compose-yml.md
+              - Jenkinsfile: notes/demo/jenkinsfile.md
               - pyproject.toml: notes/demo/pyproject-toml.md
               - setup.py: notes/demo/setup-py.md
               - pytest.ini: notes/demo/pytest-ini.md
