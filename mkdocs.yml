@@ -130,6 +130,7 @@ nav:
           - postman: full-stack/tool/postman.md
           - redis: full-stack/tool/redis.md
           - rabbitmq: full-stack/tool/rabbitmq.md
+          - SonarQube: full-stack/tool/sonarqube.md
           - figma: full-stack/tool/figma.md
           - nginx: full-stack/tool/nginx.md
           - sqlite: full-stack/tool/sqlite.md

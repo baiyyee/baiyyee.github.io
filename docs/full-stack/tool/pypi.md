@@ -38,6 +38,16 @@ python3 -m build
 python3 -m twine upload dist/*
 ```
 
+<br>
+
+### pip
+```
+安装方式：
+pip3 install git+https://github.com/luvletter2333/ItChat.git
+pip3 install -e .
+pip3 install pandas
+```
+
 <br><br>
 
 ### 相关拓展

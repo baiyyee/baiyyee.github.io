@@ -238,11 +238,11 @@ docker exec -t 84013b0e931c /bin/bash             => 进入容器并执行/bin/b
 docker top f67589c50f57                           => 查看容器内运行的进程信息
 
 docker inspect {docker_id}                        => 查看容器内部细节
-docker inspace {docker_name}
+docker inspact {docker_name}
 
 docker cp 84013b0e931c:/tmp/hhb.txt .             => 将容器内文件 /tmp/hhb.txt COPY到宿主机器当前目录下
 
-docker volumn ls                                  => 列出容器卷
+docker volume ls                                  => 列出容器卷
 
 
 docker logs
@@ -688,8 +688,10 @@ docker history  => 列出镜像的变更历史
 1.安装
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.2.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
+
 2.查看版本
 docker-compose -v
+
 
 3.编写 docker-compose.yml 文件
 version: '3.8'
@@ -701,14 +703,125 @@ services:
     volumes:
       - /home/hhb/dev/docker_volumns/jenkins:/var/jenkins_home
 
+
 4.启动容器
 docker-compose up
 
+
 5.访问UI界面查看效果 http://127.0.0.1:8000
+
 
 6.设置Jenkins密码
 cat /home/hhb/dev/docker_volumns/jenkins/secrets/initialAdminPassword
+
+
+7.Creating a Dev Container
+
+docker-compose.yml
+version: "3.8"
+services:
+    app:
+        build: ./
+        ports:
+            - 3000:3000
+
+=>
+
+version: "3.8"
+services:
+    app:
+        image: node:lts-alpine
+        command: sh -c "npm install && npm run dev"
+        working_dir: /app
+        volumes:
+            - nodemodules:/app/node_modules
+            - ./:/app
+        ports:
+            - 3000:3000
+volumes:
+    nodemodules:
+
+
+8.Using Multi-Stage Dockerfile
+Dockerfile
+
+FROM node:lts-alpine AS base
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn install --production && yarn cache clean
+COPY src ./src
+CMD ["node", "/app/src/index.js"]
+
+=>
+
+FROM node:lts-alpine AS base
+WORKDIR /app
+COPY package.json yarn.lock ./
+
+FROM base AS dev
+RUN yarn install && yarn cache clean
+CMD ["npm", "run", "dev"]
+
+FROM base AS prod
+RUN yarn install --production && yarn cache clean
+COPY src ./src
+CMD ["node", "/app/src/index.js"]
+
+=> docker-compose.yml
+
+version: "3.8"
+services:
+    app:
+        build:
+            context: .
+            target: dev
+        volumes:
+            - nodemodules:/app/node_modules
+            - ./:/app
+        ports:
+            - 3000:3000
+volumes:
+    nodemodules:
+
+
+9.frontend/backend service
+docker-compose.yml
+
+version: "3.8"
+
+services:
+    frontend:
+        build: ./frontend
+        ports:
+            - 3000:3000
+    backend:
+        build: ./backend
+        ports:
+            - 3001:3001
+        environment:
+            DB_URL: mongodb://db/hhb
+    db:
+        image: mongo:4.0-xenial
+        ports:
+            - 27017:27017
+        volumes:
+            - mongo_data:/data/db
+
+volumes:
+    mongo_data:
+
+
+10.docker network
+    docker network create hello-pdc-net
+    docker run --rm --name app --net hello-pdc-net -d -p 5000:80 hello-pdc
+    docker run --rm --name redis --net hello-pdc-net -d redis:alpine
 ```
+
+> 最佳实践
+> 
+> 1. 不要一有变更就去构建你的容器
+> 
+> 2. 将你的源代码挂载到容器中，一有代码变更自动生效，无须重复构建容器
 
 <br>
 

@@ -1446,6 +1446,25 @@ re.split(r'\s+', 'a b   c') # ['a', 'b', 'c']
 # 设置默认值
 def func(*args, **kwargs):
     kwargs.setdefault("headers", {"User-Agent": const.USER_AGENT})
+
+
+# 执行系统命令
+import subprocess
+result = subprocess.run(["ls", "-l"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+print(result.stdout)
+
+# 把输出写入文件
+with open("out.txt", "w") as f:
+    result = subprocess.run(["ls", "-l"], stdout=f, stderr=subprocess.PIPE, text=True)
+
+# 轮询结果
+result = subprocess.Popen(["ping", "-n", "10", "bing.com"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+
+while not result.poll():
+    sleep(1)
+
+stdout, stderr = result.communicate()
+print(result.stdout)
 ```
 
 <br>

@@ -20,6 +20,11 @@
 
 <br>
 
+### API 测试
+- [A simple HTTP Request & Response Service](https://httpbin.org/)
+
+<br>
+
 ### 工具
 
 - [鸠摩搜索](https://www.jiumodiary.com/)

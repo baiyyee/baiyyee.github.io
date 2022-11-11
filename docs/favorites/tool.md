@@ -91,3 +91,4 @@
 - Material Icon Theme
 - Microsoft Edge Tools for VS Code
 - One Dark Pro
+- SonarLint
