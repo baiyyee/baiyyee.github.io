@@ -259,7 +259,6 @@ Results (1.84s):
 WeTest is available on PyPI:
 
 - For common use:
-
 ```console
 $ python -m pip install WeTest
 ```

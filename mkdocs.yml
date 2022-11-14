@@ -196,6 +196,7 @@ nav:
           - tips: notes/tips/tips.md
 
   - 收藏夹:
+      - 教程: favorites/guidelines.md
       - 工具: favorites/tool.md
       - 网站: favorites/site.md
       - 文章: favorites/article.md

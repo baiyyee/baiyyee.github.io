@@ -7,6 +7,7 @@
 - [imooc](https://www.imooc.com/)
 - [bilibili](https://www.bilibili.com/)
 - [YouTube](https://www.youtube.com/)
+- [Quick Reference](https://quickref.me/)
 
 
 <br>
@@ -22,6 +23,7 @@
 
 ### API 测试
 - [A simple HTTP Request & Response Service](https://httpbin.org/)
+- [Test your front-end against a real API](https://reqres.in/)
 
 <br>
 
@@ -32,6 +34,7 @@
 - [油猴脚本库](https://greasyfork.org/zh-CN)
 - [HAR Analyzer](https://toolbox.googleapps.com/apps/har_analyzer/)
 - [邮编查询](https://www.youbianku.com/)
+- [Run Python in Your HTML](https://pyscript.net/)
 
 <br>
 
