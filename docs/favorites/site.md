@@ -35,6 +35,8 @@
 - [HAR Analyzer](https://toolbox.googleapps.com/apps/har_analyzer/)
 - [邮编查询](https://www.youbianku.com/)
 - [Run Python in Your HTML](https://pyscript.net/)
+- [Public APIs](https://github.com/public-apis/public-apis)
+- [Awesome APIs](https://github.com/TonnyL/Awesome_APIs)
 
 <br>
 

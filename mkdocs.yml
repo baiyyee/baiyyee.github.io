@@ -185,6 +185,7 @@ nav:
           - Automated Testing: notes/sop/test-automated.md
 
       - 用户指导:
+          - 如何快速上手 Mac OS?: notes/guideline/how-to-use-mac-os.md
           - 如何通过硬盘安装Win系统?: notes/guideline/how-to-install-win-os.md
           - 如何快速搭建一个个人网站?: notes/guideline/how-to-build-a-personal-website.md
           - 如何将python文件打包成.exe?: notes/guideline/how-to-create-standalone-executables-for-python.md

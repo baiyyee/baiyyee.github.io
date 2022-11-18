@@ -83,6 +83,7 @@ docker run -p 8089:8089 -v $PWD:/mnt/locust -d locustio/locust -f /mnt/locust/lo
         def search_02(self):
             print("Searching search_02")
     ```
+    
     > NOTE:
     >
     > 1. RUN: locust -f test/stress/locustfile.py
