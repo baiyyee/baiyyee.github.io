@@ -46,6 +46,7 @@ python3 -m twine upload dist/*
 pip3 install git+https://github.com/luvletter2333/ItChat.git
 pip3 install -e .
 pip3 install pandas
+pip3 install pandas -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 <br><br>

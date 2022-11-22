@@ -294,6 +294,31 @@
 <br>
 <br>
 
+### 开发环境
+- [Chrome](https://www.google.com/chrome/)
+- [Alfred](https://www.alfredapp.com/)
+- [iTerm 2](https://iterm2.com/)
+- [oh-my-zsh](https://ohmyz.sh/)
+  - `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+- [HomeBrew](https://brew.sh/)
+  - `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+  - `brew -h`
+  - `brew search git`
+  - `brew install git`
+  - `brew install mysql`
+  - `brew service start mysql`
+- [Python3](https://www.python.org/downloads/release/python-3110/)
+  - [Virtualenv](https://blog.csdn.net/weixin_39978276/article/details/110889663)
+  - `pip3 install requests`
+  - `pip3 install --upgrade pip3`
+- [git](https://git-scm.com/download/mac)
+  - `https://git-scm.com/download/mac`
+- [vim](https://sourabhbajaj.com/mac-setup/Vim/README.html)
+  - `brew install vim`
+
+<br><br>
+
 ### 相关拓展
 - [MAC云课堂](https://space.bilibili.com/41062266)
 - [MacBL.com](https://www.macbl.com/)
+- [Mac Setup](https://sourabhbajaj.com/mac-setup/index.html)
