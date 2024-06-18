@@ -4,9 +4,19 @@
 ### 安装
 
 ```console
-$ git config --global user.name "username"
-$ git config --global user.email "useremail@test.com"
+sudo apt-get update
+git --version
+```
 
+
+### 配置用户名和邮箱
+```console
+git config --global user.name "username"
+git config --global user.email "useremail@test.com"
+```
+
+### 生成密钥
+```console
 ssh-keygen -t rsa -C "useremail@test.com"
 cat ~/.ssh/id_rsa.pub
 ```

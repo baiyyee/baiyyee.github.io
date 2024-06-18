@@ -161,6 +161,7 @@ nav:
           - 固定配置:
               - .pypirc: notes/config/pypirc.md
               - .zshrc: notes/config/zshrc.md
+              - install.sh: notes/config/install-ohmyzsh.md
               - pip.conf: notes/config/pip.md
               - source.list: notes/config/apt-source-list.md
               - settings.json: notes/config/vscode-settings.md
@@ -187,6 +188,7 @@ nav:
       - 用户指导:
           - 如何快速上手 Mac OS?: notes/guideline/how-to-use-mac-os.md
           - 如何通过硬盘安装Win系统?: notes/guideline/how-to-install-win-os.md
+          - 如何快速配置一个开发环境？: notes/guideline/how-to-setup-dev-machine.md
           - 如何快速搭建一个个人网站?: notes/guideline/how-to-build-a-personal-website.md
           - 如何将python文件打包成.exe?: notes/guideline/how-to-create-standalone-executables-for-python.md
 
