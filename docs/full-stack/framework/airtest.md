@@ -1426,7 +1426,33 @@ def test_get_video_title(poco: AndroidUiautomationPoco):
             break
 ```
 
+### WSL与ADB
+在Win机器上通过WSL进行APP自动化时，使用 `adb devices` 无法获取到设备，此时需要通过以下方式解决（参见：https://jaro.blog/blog/adb-in-wsl2.html）：
+1. 确保Win和WSL中使用相同的adb版本，通过 `adb version`查看
+2. 在 Win 上执行：
+```
+adb kill-server
+adb -a -P 5037 nodaemon server
+```
+3. 在 Win 上执行 `ipconfig` 获取IP地址
+```
+以太网适配器 vEthernet (WSL (Hyper-V firewall)):
 
+   连接特定的 DNS 后缀 . . . . . . . :
+   本地链接 IPv6 地址. . . . . . . . : fe80::414:6dac:f1ee:400d%34
+   IPv4 地址 . . . . . . . . . . . . : 192.168.144.1
+   子网掩码  . . . . . . . . . . . . : 255.255.240.0
+   默认网关. . . . . . . . . . . . . :
+```
+4. 在 WSL 中执行 `sudo vim /etc/resolv.conf` 替换 nameserver 为上面获取到的IP（192.168.144.1）
+5. 在 WSL 中的 profile （如 ~/.zshrc）配置环境变量：
+export ADB_SERVER_SOCKET=tcp:192.168.144.1:5037
+6. 在 WSL 中执行`adb devices`即可正常获取设备
+
+
+
+
+### 相关引用
 
 - 引用文档：https://juejin.cn/user/1275089221067928
 - 安卓手机初始化设置：https://juejin.cn/post/7057714781079207949
