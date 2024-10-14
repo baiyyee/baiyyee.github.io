@@ -874,6 +874,7 @@ shell("pm revoke com.sina.weibo android.permission.WRITE_EXTERNAL_STORAGE")
 ```
 
 其他权限：
+
 - 应用的电话权限：android.permission.READ_PHONE_STATE
 - 应用存储的读取权限：android.permission.READ_EXTERNAL_STORAGE
 - 应用存储的写入权限：android.permission.WRITE_EXTERNAL_STORAGE
