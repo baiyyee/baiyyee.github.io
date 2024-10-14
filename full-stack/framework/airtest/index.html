@@ -1,0 +1,5868 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Baiye's Personal Space">
+      
+      
+        <meta name="author" content="Huabo He">
+      
+      
+        <link rel="canonical" href="https://baiyyee.github.io/full-stack/framework/airtest/">
+      
+      
+        <link rel="prev" href="../playwright/">
+      
+      
+        <link rel="next" href="../allure/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+    
+    
+      
+        <title>airtest - Baiye Space</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+Simplified+Chinese:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Serif Simplified Chinese";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-3SXG4P8HT5"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-3SXG4P8HT5",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-3SXG4P8HT5",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#airtest-poco" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="https://baiyyee.github.io" title="Baiye Space" class="md-header__button md-logo" aria-label="Baiye Space" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Baiye Space
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              airtest
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber"  aria-label="浅色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="浅色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="amber"  aria-label="暗黑模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="暗黑模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/baiyyee/WeTest" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    baiyyee/WeTest
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../project/wetest/" class="md-tabs__link">
+          
+  
+    
+  
+  开源
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../coding/python/" class="md-tabs__link">
+          
+  
+    
+  
+  技术栈
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../tsg/xxx/" class="md-tabs__link">
+          
+  
+    
+  
+  解决方案
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../notes/config/pypirc/" class="md-tabs__link">
+          
+  
+    
+  
+  工作笔记
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../favorites/guidelines/" class="md-tabs__link">
+          
+  
+    
+  
+  收藏夹
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../baiye/list/" class="md-tabs__link">
+          
+  
+    
+  
+  白夜
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+    
+  
+  关于我
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://baiyyee.github.io" title="Baiye Space" class="md-nav__button md-logo" aria-label="Baiye Space" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Baiye Space
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/baiyyee/WeTest" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    baiyyee/WeTest
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    开源
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            开源
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project/wetest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WeTest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project/testbase/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TestBase
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    技术栈
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            技术栈
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    编程语言
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            编程语言
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coding/python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coding/mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mysql
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coding/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coding/java/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    java
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coding/go/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    go
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coding/regex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    regex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coding/powershell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    powershell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coding/html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coding/javascript/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    javascript
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coding/css/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    css
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    测试框架
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            测试框架
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pytest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pytest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../playwright/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    playwright
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    airtest
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    airtest
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      设备连接
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      坐标系
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      初始化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      Android APP 常用操作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#poco" class="md-nav__link">
+    <span class="md-ellipsis">
+      poco 元素定位
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#poco_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      poco 常用操作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      全局操作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      异常处理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      应用授权
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      控件截图
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      测试报告
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yosemiteapk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Yosemite.apk
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#airtest-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      Airtest的 text 接口
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      断言
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      全局变量
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adb" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用 adb 命令
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tips
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pytest-airtest-poco" class="md-nav__link">
+    <span class="md-ellipsis">
+      场景实践：pytest + airtest + poco
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#win-wsl-airtestpoco" class="md-nav__link">
+    <span class="md-ellipsis">
+      特殊开发环境：Win + WSL + airtest/poco
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      相关引用
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../allure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    allure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fastapi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fastapi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testng/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    testng
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vue
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CI/CD
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            CI/CD
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cicd/cicd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cicd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cicd/git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    git
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cicd/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cicd/github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cicd/gitlab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gitlab
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cicd/jenkins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jenkins
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cicd/build/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    build
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    环境监控
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            环境监控
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../monitor/sentry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sentry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../monitor/grafana/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    grafana
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    数据分析
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            数据分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-analysis/pandas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pandas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-analysis/numpy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    numpy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    压力测试
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            压力测试
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stress/wrk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    wrk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stress/locust/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    locust
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stress/jmeter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jmeter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stress/loadrunner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    loadrunner
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    常用工具
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            常用工具
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool/python-package/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Package
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool/markdown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool/wsl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    wsl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool/pypi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pypi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool/adb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    adb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool/fiddler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fiddler
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool/postman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    postman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool/redis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool/rabbitmq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rabbitmq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool/sonarqube/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SonarQube
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool/figma/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    figma
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool/nginx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nginx
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool/sqlite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sqlite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool/maven/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    maven
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    最佳实践
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            最佳实践
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../best-practices/design-pattern/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    设计模式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wiki
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            Wiki
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wiki/network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    算法
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_10">
+            <span class="md-nav__icon md-icon"></span>
+            算法
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithm/algorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    解决方案
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            解决方案
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    思路
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            思路
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tsg/xxx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xxx
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    代码
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            代码
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tsg/xxx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xxx
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    工具
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            工具
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tsg/git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    git
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tsg/pytest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pytest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    工作笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            工作笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    配置
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            配置
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_1" id="__nav_4_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    固定配置
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            固定配置
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/config/pypirc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    .pypirc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/config/zshrc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    .zshrc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/config/install-ohmyzsh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    install.sh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/config/pip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pip.conf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/config/apt-source-list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    source.list
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/config/vscode-settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    settings.json
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_2" id="__nav_4_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    配置样例
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            配置样例
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/demo/dockerfile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dockerfile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/demo/docker-compose-yml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker-compose.yml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/demo/jenkinsfile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jenkinsfile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/demo/pyproject-toml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pyproject.toml
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/demo/setup-py/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    setup.py
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/demo/pytest-ini/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pytest.ini
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/demo/restclient-vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test.http
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SOP
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            SOP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/sop/git-flow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git Flow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/sop/test-plan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test Plan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/sop/test-case/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test Case
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/sop/test-issue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test Issue
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/sop/test-report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/sop/test-review/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test Review
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/sop/test-manager/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test Manager
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/sop/test-automated/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automated Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    用户指导
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            用户指导
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/guideline/how-to-use-mac-os/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何快速上手 Mac OS?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/guideline/how-to-install-win-os/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何通过硬盘安装Win系统?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/guideline/how-to-setup-dev-machine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何快速配置一个开发环境？
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/guideline/how-to-build-a-personal-website/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何快速搭建一个个人网站?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/guideline/how-to-create-standalone-executables-for-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何将python文件打包成.exe?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    工具
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            工具
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/tool/scoop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scoop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tips
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Tips
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/tips/tips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    收藏夹
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            收藏夹
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../favorites/guidelines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../favorites/tool/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    工具
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../favorites/site/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网站
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../favorites/article/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文章
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    白夜
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            白夜
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../baiye/list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    清单
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../baiye/poetry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    诗集
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../baiye/reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    摘抄本
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关于我
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      设备连接
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      坐标系
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      初始化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      Android APP 常用操作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#poco" class="md-nav__link">
+    <span class="md-ellipsis">
+      poco 元素定位
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#poco_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      poco 常用操作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      全局操作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      异常处理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      应用授权
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      控件截图
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      测试报告
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yosemiteapk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Yosemite.apk
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#airtest-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      Airtest的 text 接口
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      断言
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      全局变量
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adb" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用 adb 命令
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tips
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pytest-airtest-poco" class="md-nav__link">
+    <span class="md-ellipsis">
+      场景实践：pytest + airtest + poco
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#win-wsl-airtestpoco" class="md-nav__link">
+    <span class="md-ellipsis">
+      特殊开发环境：Win + WSL + airtest/poco
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      相关引用
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="airtest-poco">airtest + poco</h1>
+<h3 id="_1">安装</h3>
+<div class="highlight"><pre><span></span><code>pip install -U airtest
+pip install -U pocoui
+</code></pre></div>
+<blockquote>
+<p>NOTE:</p>
+<p>Poco依赖库是 pocoui 而不是 poco，如果你发现你的环境里面同时存在 poco 和 pocoui ，请务必把 poco 卸载了，留下 pocoui即可</p>
+</blockquote>
+<h3 id="_2">设备连接</h3>
+<ul>
+<li>
+<p>设备连接字符串
+    <div class="highlight"><pre><span></span><code>Android://&lt;adbhost[localhost]&gt;:&lt;adbport[5037]&gt;/&lt;serialno&gt;
+</code></pre></div></p>
+<p>其中，adbhost 是 adb server 所在主机的 ip ，默认是本机 127.0.0.1 ，adb port 默认是 5037 ， serialno 是 android手机的序列号</p>
+<div class="highlight"><pre><span></span><code># 什么都不填写，会默认取当前连接中的第一台手机
+Android:///
+
+# 连接本机默认端口连的一台设备号为79d03fa的手机
+Android://127.0.0.1:5037/79d03fa
+
+# 用本机的adb连接一台adb connect过的远程设备，注意10.254.60.1:5555其实是serialno
+Android://127.0.0.1:5037/10.254.60.1:5555
+
+
+# 模拟器等特殊设备、使用了连接参数时：
+
+# 模拟器连接，勾选了Use javacap模式
+Android://127.0.0.1:5037/127.0.0.1:7555?cap_method=JAVACAP
+
+# 所有的选项都勾选上之后连接的设备，用&amp;&amp;来连接多个参数字符串
+Android://127.0.0.1:5037/79d03fa?cap_method=JAVACAP&amp;&amp;ori_method=ADBORI&amp;&amp;touch_method=ADBTOUCH
+</code></pre></div>
+</li>
+<li>
+<p>连接方式
+    <div class="highlight"><pre><span></span><code># 方式一：
+auto_setup(__file__, devices=[&quot;Android://127.0.0.1:5037/SJE5T17B17&quot;],logdir=True, project_root=r&quot;D:\test\logs&quot;, compress=90)
+
+# 方式二：
+connect_device(&quot;Android:///SJE5T17B17?cap_method=javacap&amp;touch_method=adb&quot;)
+
+# 方式三：
+init_device(platform=&quot;Android&quot;,uuid=&quot;SJE5T17B17&quot;, cap_method=&quot;JAVACAP&quot;)
+</code></pre></div></p>
+<p>示例：
+<div class="highlight"><pre><span></span><code>from airtest.core.api import *
+device = connect_device(&quot;Android://127.0.0.1:5037/JVR6R18915000603&quot;)
+poco = AndroidUiautomationPoco(device)
+poco.device.wake()
+</code></pre></div></p>
+</li>
+<li>
+<p>断开设备
+    <div class="highlight"><pre><span></span><code>dev = connect_device(&quot;android:///&quot;)
+dev.disconnect() # 能帮助我们主动释放掉一些后面测试不会再用到的资源，比如一些adb连接等
+</code></pre></div></p>
+</li>
+<li>
+<p>获取本地所有可连接设备
+    <div class="highlight"><pre><span></span><code>from airtest.core.api import *
+from airtest.core.android.adb import *
+auto_setup(__file__)
+adb = ADB()
+device_list = adb.devices()
+</code></pre></div></p>
+</li>
+</ul>
+<h3 id="_3">坐标系</h3>
+<ul>
+<li>
+<p>归一化坐标系</p>
+<p>Poco的坐标系与Airtest不一样，Airtest使用的是绝对坐标系，在Airtest的脚本里，我们可以传入类似 touch([500,500]) 这样的绝对坐标；但Poco只能接受绝对坐标（归一化坐标系），如上述示例中的 poco.click([0.5,0.5])
+归一化坐标系就是将屏幕宽和高按照单位一来算，这样UI在poco中的宽和高其实就是相对于屏幕的百分比大小了，好处就是不同分辨率设备之间，同一个UI的归一化坐标系下的位置和尺寸是一样的，有助于编写跨设备测试用例。
+归一化坐标系的空间是均匀的，屏幕正中央一定是(0.5, 0.5)，其他标量和向量的计算方法同欧式空间。</p>
+<div class="highlight"><pre><span></span><code>origin(0, 0)
+
+0 ----------------&gt;1
+|
+|
+|
+|
+|
+v
+1
+</code></pre></div>
+</li>
+<li>
+<p>绝对坐标与相对坐标互相转换
+    <div class="highlight"><pre><span></span><code># 获取设备屏幕分辨率(竖屏)
+height = G.DEVICE.display_info[&#39;height&#39;]
+width = G.DEVICE.display_info[&#39;width&#39;]
+
+# 已知绝对坐标[311,1065]，转换成相对坐标
+x1 = 311/width
+y1 = 1065/height
+poco.click([x1,y1])
+
+# 已知相对坐标[0.3,0.55]，转换成绝对坐标
+x2 = 0.3*width
+y2 = 0.55*height
+touch([x2,y2])
+
+# 如果是横屏设备的话，则分辨率如下
+height = G.DEVICE.display_info[&#39;width&#39;]
+width = G.DEVICE.display_info[&#39;height&#39;]
+
+
+# 判断当前屏幕为横屏还是竖屏，并获取当前屏幕的分辨率
+if G.DEVICE.display_info[&#39;orientation&#39;] in [1,3]:
+    height = G.DEVICE.display_info[&#39;width&#39;]
+    width = G.DEVICE.display_info[&#39;height&#39;]
+else:
+    height = G.DEVICE.display_info[&#39;height&#39;]
+    width = G.DEVICE.display_info[&#39;width&#39;]
+</code></pre></div></p>
+</li>
+</ul>
+<h3 id="_4">初始化</h3>
+<ul>
+<li>
+<p>单台设备
+    <div class="highlight"><pre><span></span><code>from airtest.core.api import *
+from poco.drivers.android.uiautomation import AndroidUiautomationPoco
+auto_setup(__file__,devices=[&quot;android://127.0.0.1:5037/127.0.0.1:7555&quot;],logdir=True)
+poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
+poco(text=&quot;网易云音乐&quot;).click()
+</code></pre></div></p>
+<blockquote>
+<p>NOTE:</p>
+<p>1.use_airtest_input=True是指，使用Airtest去执行点击操作(否则是调用Android接口去点击)，好处是，会在日志里面记录一条log记录，这样生成报告时，就能在报告上显示这个点击记录</p>
+<p>2.screenshot_each_action是指，是否开启每个poco步骤的截图</p>
+</blockquote>
+</li>
+<li>
+<p>多台设备
+    <div class="highlight"><pre><span></span><code>from airtest.core.api import *
+from airtest.core.android import Android
+from poco.drivers.android.uiautomation import AndroidUiautomationPoco
+auto_setup(__file__,devices=[&quot;android://127.0.0.1:5037/127.0.0.1:7555&quot;,&quot;android://127.0.0.1:5037/0123456789&quot;])
+
+dev1 = Android(&#39;127.0.0.1:7555&#39;)
+dev2 = Android(&#39;0123456789&#39;)
+poco1 = AndroidUiautomationPoco(dev1)
+poco2 = AndroidUiautomationPoco(dev2)
+
+poco1(text=&quot;网易云音乐&quot;).click()
+poco2(text=&quot;网易云音乐&quot;).click()
+</code></pre></div></p>
+</li>
+<li>
+<p>设备初始化顺序
+    <div class="highlight"><pre><span></span><code>from airtest.core.api import *
+
+# 连接设备
+auto_setup(__file__,logdir=True,devices=[&quot;Android://127.0.0.1:5037/emulator-5554?cap_method=JAVACAP&quot;])
+
+#启动应用
+start_app(&quot;com.NetEase&quot;)
+sleep(6.0)
+
+# 初始化poco
+from poco.drivers.unity3d import UnityPoco
+poco = UnityPoco()
+poco(&quot;btn_start&quot;).click()
+
+# 获取设备品牌
+brand = subprocess.check_output([&#39;adb&#39;, &#39;shell&#39;, &#39;getprop&#39;, &#39;ro.product.brand&#39;], text=True).strip() 
+# 获取设备型号
+model = subprocess.check_output([&#39;adb&#39;, &#39;shell&#39;, &#39;getprop&#39;, &#39;ro.product.model&#39;], text=True).strip() 
+# 获取设备连接时用到的类
+device().__class__.__name__.lower() =&gt; ios/android
+</code></pre></div>
+    正确的顺序是：先连接设备（一般在 auto_setup 接口里面连接）--&gt; 再打开游戏应用（一般用 start_app 接口）--&gt; 等应用开启完毕，最后才初始化 poco</p>
+<p>这里简单解释下，为什么我们要先打开游戏应用，再来初始化对应的poco呢？这是因为游戏应用里，事先嵌入了Poco-SDK，当游戏完全启动时，我们的Poco服务才会跟着启动起来，所以我们必须等游戏完全启动（start_app 后面带充足的 sleep ）之后，才能开始初始化游戏的poco。
+而Android和iOS原生应用则没有这一点限制，只要我们先连接上Android/iOS设备之后，就可以开始初始化Android poco或者iOS poco啦</p>
+</li>
+<li>
+<p>多机协作
+    <div class="highlight"><pre><span></span><code>from airtest.core.api import G
+from airtest.core.api import connect_device
+dev1 = connect_device(&quot;Android://127.0.0.1:5037/serialno1&quot;)  # 连上第一台手机
+dev2 = connect_device(&quot;Android://127.0.0.1:5037/serialno2&quot;)  # 第二台手机
+
+print(G.DEVICE_LIST)  # 此时设备列表为[dev1, dev2]
+
+# 传入数字0切换当前操作的手机到第1台
+set_current(0)
+
+# 切换当前操作的手机到序列号为serialno2的手机
+set_current(&quot;serialno2&quot;)
+
+# 使用device()接口获取当前连接中的设备Android对象
+current_dev = device()
+
+
+from airtest.core.api import G
+from poco.drivers.android.uiautomation import AndroidUiautomationPoco
+print(G.DEVICE_LIST)  # 假设当前总共有2台手机
+poco1 = AndroidUiautomationPoco(G.DEVICE_LIST[0])
+poco2 = AndroidUiautomationPoco(G.DEVICE_LIST[1])
+</code></pre></div></p>
+</li>
+<li>
+<p>使用 python xxxx.py 运行脚本</p>
+<p>直接使用Python运行脚本时，可以采用以下方式：
+<div class="highlight"><pre><span></span><code>from airtest.core.api import *
+from airtest.cli.parser import cli_setup
+
+if not cli_setup():
+    auto_setup(__file__, logdir=True, devices=[
+        &quot;Android:///?cap_method=javacap&amp;ori_method=adbori&quot;,
+    ])
+
+# do something
+# touch((x, y))
+</code></pre></div></p>
+<p>当使用 python xxx.py 来运行本文件，且不带任何命令行参数时，则自动使用 auto_setup 这个接口来对airtest相关的参数进行初始化。这样只需要在写py脚本时，填写好指定的参数就能直接用 python xx.py 指令来运行脚本。
+同时，原先传统的 airtest run xx.air –-devices Android:/// 命令行运行方式也不受影响，只要脚本检测到传入了命令行参数（即代码中的if not cli_setup()判断），就依然优先使用命令行参数来初始化Airtest环境。</p>
+</li>
+</ul>
+<h3 id="android-app">Android APP 常用操作</h3>
+<div class="highlight"><pre><span></span><code>from airtest.core.api import *
+
+# 安装app
+install(&quot;./com.sina.weibo.apk&quot;)
+install_app(r&quot;D:\demo\test.apk&quot;,install_options=[&quot;-r&quot;, &quot;-t&quot;])
+device().adb.pm_install(APK_FILE)
+
+# NOTE：install 方法需要提供应用的 APK 文件路径，而 install_app 方法则需要提供应用的包名
+
+
+# 清理app数据
+clear_app(&quot;org.cocos2d.blackjack&quot;)
+
+# 启动APP
+start_app(&quot;org.cocos2d.blackjack&quot;)
+
+# 关闭APP
+stop_app(&quot;com.sina.weibo&quot;)
+
+# 卸载app
+uninstall(&quot;./com.sina.weibo.apk&quot;)
+
+# 切换app
+shell(&quot;monkey -p com.taobao.taobao -c android.intent.category.LAUNCHER 1&quot;)
+
+
+# 判断apk是否需要覆盖安装
+from airtest.utils.apkparser import APK
+
+def need_upgrade(device: Android, package: str, apk_path: str):
+    &quot;&quot;&quot;
+    检查手机中的package name的版本号，与本地apk文件版本号进行对比，如果本地文件版本号更高，说明需要覆盖安装
+    :param device: Android() 对象
+    :param package: 例如：com.netease.cloudmusic
+    :param apk_path: 本地apk文件路径
+    :return:
+    &quot;&quot;&quot;
+    apk_version = int(APK(apk_path).androidversion_code)
+    installed_version = device.adb.get_package_version(package)
+    if installed_version is None or apk_version &gt; int(installed_version):
+        print(&quot;local version code is {}, installed version code is {}&quot;.format(apk_version, installed_version))
+        return True
+    return False
+
+
+# 覆盖安装
+from airtest.core.api import *
+# 安装参数 -r 表示覆盖安装
+install(r&quot;D:\demo\test.apk&quot;, install_options=[&quot;-r&quot;, &quot;-t&quot;])
+
+
+# 唤醒屏幕
+wake()
+
+# 返回HOME
+home()
+
+# 文本输入
+text(&quot;123&quot;)
+
+# 截图
+snapshot(&quot;screen_shot.png&quot;)
+
+# 清理后台
+dev = device()
+#一般Android设备可以从底部向上滑动唤出设备窗
+dev.swipe_along([(500, 2295),(500,1500),(500,1000), (500, 100)])
+
+#唤出设备窗后，当出现了“关闭所有最近打开的应用”控件，点击即可全部清除所有app后台
+if poco(&quot;com.huawei.android.launcher:id/clear_all_recents_image_button&quot;).exists():
+        poco(&quot;com.huawei.android.launcher:id/clear_all_recents_image_button&quot;).click()
+
+
+
+# 传入某个按键响应
+keyevent(&quot;BACK&quot;) # 返回键
+keyevent(&quot;HOME&quot;) # 主页键
+keyevent(&quot;MENU&quot;) # 菜单键
+keyevent(&quot;VOLUME_UP&quot;) # 音量增大
+keyevent(&quot;VOLUME_DOWN&quot;) # 音量减小
+keyevent(&quot;POWER&quot;) # 电源键
+keyevent(&quot;CAMERA&quot;) # 拍照键
+keyevent(&quot;SEARCH&quot;) # 搜索键
+keyevent(&quot;KEYCODE_DEL&quot;) # 删除键
+
+
+android = Android()
+android.path_app(&quot;com.netease.cloudmusic&quot;) # 返回应用的完整路径
+android.check_app(&quot;com.netease.cloudmusic&quot;) # 检查应用是否存在于当前设备上
+android.is_screenon() # 检查屏幕是否打开
+android.is_locked() # 检查设备是否锁定
+android.get_current_resolution() # 获取当前设备的分辨率
+android.get_default_device() # 获取当前设备的序列号
+android.list_app(third_only=True) # 列出设备上安装的第三方应用列表
+
+
+dev = device()  # 获取到当前设备的Android对象
+print(dev.get_display_info())  # 查看当前设备的显示信息
+print(dev.list_app())  # 打印出当前安装的app列表
+
+# 对当前设备执行指令 adb shell ls
+print(shell(&quot;ls&quot;))
+
+# 对特定设备执行adb指令
+dev = connect_device(&quot;Android:///device1&quot;)
+dev.shell(&quot;ls&quot;)
+
+# 切换到某台设备，执行adb指令
+set_current(0)
+shell(&quot;ls&quot;)
+shell(&quot;pm list packages -3&quot;) # 列出设备上安装的第三方应用列表
+
+# NOTE：实际上，airtest的 shell() ，就是 帮忙补充了 adb -s 手机序列号 shell 这一部分 ，后面的内容就按正常shell指令来传就行了
+
+# 文件操作
+from airtest.core.api import *
+from airtest.core.android import *
+auto_setup(__file__)
+​
+dev = device()
+
+dev.adb.pull(phone_file,local_path) # 从手机上复制文件到本地
+dev.adb.push(local_file,phone_path) # 将本地文件推送到手机
+shell(&quot;rm %s&quot; % (del_file)) # 删除手机上的文件
+</code></pre></div>
+<p>Airtest封装的安装接口，包含以下安装参数可以使用：</p>
+<ul>
+<li>-t，允许测试包<br></li>
+<li>-l，锁定应用程序<br></li>
+<li>-s，把应用程序安装到sd卡上<br></li>
+<li>-g，为应用程序授予所有运行时的权限<br></li>
+<li>-r，替换已存在的应用程序（覆盖安装）<br></li>
+<li>-d，允许降级覆盖安装</li>
+</ul>
+<h3 id="poco">poco 元素定位</h3>
+<ul>
+<li>元素层级关系</li>
+<li>子节点：child<br></li>
+<li>所有子节点：children<br></li>
+<li>子孙节点：offspring<br></li>
+<li>父节点：parent<br></li>
+<li>
+<p>兄弟节点：sibling<br></p>
+</li>
+<li>
+<p>元素定位
+    <div class="highlight"><pre><span></span><code>poco(&#39;bg_mission&#39;) # name属性定位
+poco(&#39;bg_mission&#39;, type=&#39;Button&#39;) # name + type 定位
+poco(&#39;main_node&#39;).child(&#39;list_item&#39;).offspring(&#39;item&#39;)
+
+poco(name=&quot;淘宝&quot;) # 基本选择器
+poco(&quot;plays&quot;).child(&quot;playBasic&quot;) # 相对选择器
+poco(&quot;Content&quot;).child(type=&quot;Text&quot;)[0] # 空间选择器
+
+items = poco(&#39;main_node&#39;).child(&#39;list_item&#39;).offspring(&#39;item&#39;)
+print(items[0].child(&#39;material_name&#39;).get_text())
+print(items[1].child(&#39;material_name&#39;).get_text())
+
+
+poco(&quot;android.widget.FrameLayout&quot;).child(&quot;android.widget.LinearLayout&quot;)
+poco(&quot;android.widget.FrameLayout&quot;).children()[2]
+
+
+#【利用子孙节点关系定位元素】统计输出热歌榜当前界面中歌曲数量
+num=len(poco(&quot;com.netease.cloudmusic:id/musicInfoList&quot;).offspring(nameMatches=&quot;com.*?songName&quot;))    
+print(&quot;当前界面有{}首歌&quot;.format(num))
+
+
+#【利用子节点关系定位元素】统计输出当前界面的热门节目单数量
+num=0
+for x in poco(&quot;CollectionView&quot;).child(&quot;UIA.Podcasts.ShelfItem.show&quot;):
+    print(x.child().child().get_name())
+    num+=1
+
+
+#【利用子孙节点关系寻找元素】通过输出子孙节点去查找“发现”按钮
+for i in poco(&quot;com.netease.cloudmusic:id/bottomNav&quot;).offspring(nameMatches=&quot;com.*?desc&quot;):
+    print(i.get_text())
+
+
+#【利用子孙节点关系以及空间顺序定位元素】点击&quot;发现&quot;按钮
+poco(&quot;com.netease.cloudmusic:id/bottomNav&quot;).offspring(nameMatches=&quot;com.*?desc&quot;)[1].click()
+sleep(1.0)
+
+
+#【通过兄弟节点关系定位元素】点击发现页中“精选”旁边的“排行榜”按键
+poco(&quot;精选&quot;).sibling()[1].click()
+
+
+#【利用子孙节点关系寻找元素】输出热歌榜中每首歌的名字
+print(&quot;当前界面的热歌榜歌曲有：&quot;)
+for i in poco(&quot;com.netease.cloudmusic:id/musicInfoList&quot;).offspring(nameMatches=&quot;com.*?songName&quot;):
+    print(i.get_text())
+
+
+#【利用子孙节点关系定位元素】统计输出热歌榜当前界面中歌曲数量
+num=len(poco(&quot;com.netease.cloudmusic:id/musicInfoList&quot;).offspring(nameMatches=&quot;com.*?songName&quot;))    
+print(&quot;当前界面有{}首歌&quot;.format(num))
+
+
+#【利用子节点关系定位元素】输出目前播放器在播放的歌曲名
+print(&quot;下方为正在播放的歌曲：&quot;)    
+now_song = poco(&quot;com.netease.cloudmusic:id/minibar_song_container&quot;).child().children()   
+print(now_song.get_text())
+
+
+# 正则定位
+poco(textMatches=&#39;^据点.*$&#39;, type=&#39;Button&#39;, enable=True)
+poco(nameMatches=&quot;.*portalTitle&quot;,textMatches=&quot;.*推荐&quot;)
+for i in poco(nameMatches=&quot;com.*?songInfo&quot;):
+    print(i.get_text())
+</code></pre></div></p>
+<p>除了最常见的 textMatches 、 nameMatches 和 typeMatches ，其实大部分的属性都可以用这种方式来传递正则表达式，只要能够用 poco(xx=预期属性值) 来选择的控件，就可以用 poco(xxMatches=预期属性值的正则表达式) 来进行匹配定位</p>
+<p>Poco控件的定位方式有很多种，但是我们通常不推荐使用相对选择器和控件顺序选择器进行定位，因为复杂的层级关系加上空间索引顺序，很容易出现运行效率差，或者因为索引值变化而导致出现找不到控件的问题。</p>
+<p>我们非常推荐多使用基本选择器和正则匹配表达式来定位控件</p>
+<p>触类旁通，使用1个节点的某个属性值，不仅仅指text属性，还可以是name属性或者其它属性，只要它在当前页面是唯一的，那么我们就可以利用这个属性来定位到我们的控件；甚至 借助节点的多个属性值来进行精准定位控件，都是可以的 。我们非常建议大家多使用这种方式来编写我们的Poco定位脚本。</p>
+</li>
+</ul>
+<h3 id="poco_1">poco 常用操作</h3>
+<ul>
+<li>
+<p>遍历
+    <div class="highlight"><pre><span></span><code>items = poco(&#39;main_node&#39;).child(&#39;list_item&#39;).offspring(&#39;item&#39;)
+for item in items:
+    item.child(&#39;icn_item&#39;)
+</code></pre></div></p>
+</li>
+<li>
+<p>读取属性
+    <div class="highlight"><pre><span></span><code>poco(&#39;bg_mission&#39;).attr(&#39;type&#39;)
+poco(&#39;bg_mission&#39;).attr(&#39;text&#39;)
+poco(&#39;bg_mission&#39;).exists()
+poco(&#39;bg_mission&#39;).get_text()
+poco(&quot;star_single&quot;).get_name()
+poco(&quot;star_single&quot;).get_position() # 获取节点的位置坐标
+poco(&quot;star_single&quot;).get_bounds() # 获取节点的顶部、右侧、底部和左侧的归一化坐标系
+poco(&quot;star_single&quot;).get_size()
+</code></pre></div></p>
+</li>
+<li>
+<p>设置控件的文本信息
+    <div class="highlight"><pre><span></span><code>poco(&quot;pos_input&quot;).set_text(&quot;123&quot;)
+poco(&quot;pos_input&quot;).setattr(&#39;text&#39;,&quot;456&quot;)
+</code></pre></div></p>
+</li>
+<li>
+<p>删除文本
+    <div class="highlight"><pre><span></span><code># 利用按键码进行逐字删除
+for i in range(10):
+    keyevent(&quot;67&quot;) # 等同于keyevent(&quot;KEYCODE_DEL&quot;)
+
+# 利用Poco的set_text置空进行删除
+poco(&quot;com.netease.cloudmusic:id/search_src_text&quot;).set_text(&quot; &quot;)
+</code></pre></div></p>
+</li>
+<li>
+<p>点击
+    <div class="highlight"><pre><span></span><code>poco(&#39;bg_mission&#39;).click()
+poco(&#39;bg_mission&#39;).click(&#39;center&#39;)
+poco(&#39;bg_mission&#39;).click([0.5, 0.5])    # equivalent to center
+poco(&#39;bg_mission&#39;).focus([0.5, 0.5]).click()  # equivalent to above expression
+
+poco(&quot;star_single&quot;).click() # 控件单击
+poco(&quot;star_single&quot;).double_click() # 控件双击
+poco(&#39;star_single&#39;).long_click() # 控件长按
+poco(&#39;star_single&#39;).long_click(duration=5)
+</code></pre></div></p>
+</li>
+<li>
+<p>滑动
+    <div class="highlight"><pre><span></span><code>joystick = poco(&#39;movetouch_panel&#39;).child(&#39;point_img&#39;)
+joystick.swipe(&#39;up&#39;)
+joystick.swipe([0.2, -0.2])  # swipe sqrt(0.08) unit distance at 45 degree angle up-and-right
+joystick.swipe([0.2, -0.2], duration=0.5)
+
+poco(&quot;Handle&quot;).swipe([0,0.2]) # 向下滑动0.2个单位距离
+poco(&quot;Handle&quot;).swipe([0,-0.2]) # 向上滑动0.2个单位距离
+poco(&quot;Handle&quot;).swipe(&quot;down&quot;) # 向下滑动0.1个单位距离
+poco(&quot;Handle&quot;).swipe(&quot;up&quot;) # 向上滑动0.1个单位距离
+</code></pre></div></p>
+</li>
+<li>
+<p>拖拽
+    <div class="highlight"><pre><span></span><code>poco(&quot;playDragAndDrop&quot;).child(&quot;star&quot;)[0].drag_to(poco(&quot;shell&quot;)) # 拖动到另一个控件上
+poco(&quot;playDragAndDrop&quot;).child(&quot;star&quot;)[1].drag_to([0.503, 0.705]) # 拖动到固定目标上
+
+shell = poco(&#39;shell&#39;).focus(&#39;center&#39;)
+for star in poco(&#39;star&#39;):
+    star.drag_to(shell)
+time.sleep(1)
+
+# 下拉列表组件里从一个点拖拽到另一个点实现滚动效果
+listView = poco(&#39;Scroll View&#39;)
+listView.focus([0.5, 0.8]).drag_to(listView.focus([0.5, 0.2]))
+</code></pre></div></p>
+</li>
+<li>
+<p>滑动手势 =&gt; 可用于解锁等复杂手势操作
+    <div class="highlight"><pre><span></span><code>poco = Poco(...)
+ui1 = poco(&#39;xxx&#39;)
+ui2 = poco(&#39;yyy&#39;)
+
+# touch down on ui1 and hold for 1s
+# then drag to ui2 and hold for 1s
+# finally release(touch up)
+ui1.start_gesture().hold(1).to(ui2).hold(1).up()
+
+
+from airtest.core.api import *
+from poco.drivers.unity3d import UnityPoco
+auto_setup(__file__)
+poco = UnityPoco()
+# 滑一个V形状
+poco.start_gesture([0.5, 0.5]).hold(1).to([0.6, 0.6]).hold(1).to([0.7, 0.5]).up()
+</code></pre></div></p>
+</li>
+<li>
+<p>内部偏移</p>
+<p>如果选中控件之后，你并不想点击控件的中心位置，而是想点击控件内部的其它位置，我们可以使用 focus() 方法来指定内部偏移量
+<div class="highlight"><pre><span></span><code>poco(&#39;bg_mission&#39;).focus(&#39;center&#39;).click()  # click the center
+poco(&quot;star_single&quot;).focus([0,0]).click() # 点击星星控件左上角的位置
+poco(&quot;star_single&quot;).focus([0.5,0.5]).click() # 点击星星控件的中心位置，等同于poco(&quot;star_single&quot;).click()
+poco(&quot;star_single&quot;).focus([-0.5,0.5]).click() # 点击星星控件的外部位置
+</code></pre></div></p>
+</li>
+<li>
+<p>外部偏移</p>
+<p>选中1个控件以后，如果我们想点击控件之外的位置，也可以使用 focus() 方法来指定外部偏移量；并且会出现 点击坐标的值小于0或者大于1 的情况
+<div class="highlight"><pre><span></span><code>pearl_text = poco(text=&quot;pearl&quot;)
+pearl_text.focus([0.5,-3]).long_click()
+
+# 将 focus 和 drag_to 结合使用还能产生卷动(scroll)的效果，下面例子展示了如何将一个列表向上卷动半页
+scrollView = poco(type=&#39;ScollView&#39;)
+scrollView.focus([0.5, 0.8]).drag_to(scrollView.focus([0.5, 0.2]))
+</code></pre></div></p>
+</li>
+<li>
+<p>等待
+    <div class="highlight"><pre><span></span><code>poco(&#39;bg_mission&#39;).wait(5).click()  # wait 5 seconds at most，click once the object appears
+poco(&#39;bg_mission&#39;).wait(5).exists()  # wait 5 seconds at most，return Exists or Not Exists
+
+# 在10s内等待控件出现，如出现，则进行长按操作
+poco(texture=&quot;icon&quot;).wait(timeout=10).long_click() # Poco控件的wait方法，即使在设定时间内未找到控件，也是不会报错的，可以继续往下执行下去
+
+# 等待黄色小鱼出现
+poco(&quot;yellow&quot;).wait_for_appearance(timeout=20)
+# 等待计分文本控件消失
+poco(text=&quot;Count:&quot;).wait_for_disappearance(timeout=3)
+</code></pre></div></p>
+<blockquote>
+<p>NOTE：</p>
+<p>wait_for_appearance()和wait_for_disappearance()；这两个API可以帮助我们等待页面上 某1个UI 出现或者消失，等待的超时时间 timeout 默认为120秒，如果在超时时长之内元素没有出现或者消失的话，会报 PocoTargetTimeout 的错误</p>
+</blockquote>
+</li>
+<li>
+<p>冻结UI
+    <div class="highlight"><pre><span></span><code>poco = UnityPoco()
+# 通过冻结的方式，可以提高约10倍速度，操作的次数越多，提效越多
+with poco.freeze() as frozen_poco:
+    for item in frozen_poco(&#39;xxx&#39;):
+        item.click()
+</code></pre></div>
+    poco的所有操作几乎每次操作前，都要通过发送rpc请求把App的hierarchy(UI树)从手机拉到PC，如属性类操作attr()、各种等待、各种点击等，这将非常耗费时间。这么做的原因是Poco无法保证App界面有没有发生变化，所以每次操作前都要去获取实时的hierarchy(UI树)。
+    所以Poco提供了freeze()方法，它把hierarchy(UI树)拉取一次后，保存在PC内存中，以后再有交互操作时，不再去手机拉取，而是直接读取PC内存中保存的这份hierarchy(UI树)。这将极大提高操作效率从而节省UI自动化执行时间。</p>
+<p>不过这种方法有一个缺点，就是在你这段操作时间内，UI不能有变化。比如当你点击第一个复选框后，在该复选框下面又多出来一行输入框，那么后面的复选框都要往下移。如果此时仍用保存在PC内存中的hierarchy(UI树)，在你去点击第2个复选框时，实际是点到了新出现的输入框上面。
+所以使用freeze()的场景，一定要确保期间UI不会发生变化。</p>
+</li>
+<li>
+<p>录屏
+    <div class="highlight"><pre><span></span><code>from airtest.core.api import *
+from airtest.core.android.recorder import *
+from airtest.core.android.adb import *
+
+auto_setup(__file__,devices=[&quot;android://127.0.0.1:5037/emulator-5554&quot;])
+
+adb = ADB(serialno=&quot;emulator-5554&quot;)
+recorder = Recorder(adb)
+
+# 开启录屏
+recorder.start_recording(max_time=10)
+
+touch(Template(r&quot;tpl1603091574169.png&quot;, record_pos=(0.113, -0.302), resolution=(900, 1600)))
+sleep(3.0)
+
+# 结束录屏
+recorder.stop_recording(output=&quot;test.mp4&quot;)
+</code></pre></div></p>
+</li>
+<li>
+<p>自定义滑动
+    <div class="highlight"><pre><span></span><code>from airtest.core.api import *
+dev = device()  # 获取当前手机设备
+# 手指按照顺序依次滑过3个坐标
+dev.swipe_along([(100, 100), (200, 200), (300, 300)]) # 滑动解锁
+dev.minitouch.swipe_along([(100, 100), (200, 200), (300, 300)]) # 滑动解锁(请注意这个接口目前只有在使用了默认的 minitouch 模式（Android10使用 maxtouch ）时才能使用)
+
+
+# 两个手指同时点击
+from airtest.core.api import *
+from airtest.core.android.touch_methods.base_touch import *
+connect_device(&quot;Android:///&quot;)
+
+multitouch_event = [
+    DownEvent((100, 100), 0),  # 手指1按下(100, 100)
+    DownEvent((200, 200), 1),  # 手指2按下(200, 200)
+    SleepEvent(1),
+    UpEvent(0), UpEvent(1)]  # 2个手指分别抬起
+
+device().touch_method.perform(multitouch_event)
+
+
+
+# 使用swipe_along滑个圈
+from airtest.core.api import *
+
+auto_setup(__file__)
+
+# 获取当前手机设备
+dev = device()
+# 手指按照顺序依次滑过多个坐标
+dev.swipe_along([[959, 418],[1157, 564],[1044, 824],[751, 638],[945, 415]])
+</code></pre></div></p>
+</li>
+<li>
+<p>长按删除
+    <div class="highlight"><pre><span></span><code>from airtest.core.android.touch_methods.base_touch import *
+dev = device()
+
+# 案例一
+# 长按删除应用
+longtouch_event = [
+    DownEvent([908, 892]),# 待删除应用的坐标
+    SleepEvent(2),
+    MoveEvent([165,285]),# 删除应用的垃圾桶坐标
+    UpEvent(0)]
+
+dev.touch_proxy.perform(longtouch_event)
+
+# 取消卸载
+poco(&quot;android:id/button2&quot;).click()
+</code></pre></div></p>
+</li>
+<li>
+<p>多指滑动
+    <div class="highlight"><pre><span></span><code># 案例三
+# 三指滑动
+swipe_event2 = [DownEvent((100, 300), 0), DownEvent((100, 500), 1), DownEvent((100, 700), 2), SleepEvent(0.1)]
+
+for i in range(5):
+    swipe_event2.append(MoveEvent((100 + 100*i, 300), 0))# 第一根手指
+    swipe_event2.append(MoveEvent((100 + 100*i, 500), 1))# 第二根手指
+    swipe_event2.append(MoveEvent((100 + 100*i, 700), 2))# 第三根手指
+    swipe_event2.append(SleepEvent(0.2))
+
+swipe_event2.append(UpEvent(0))
+swipe_event2.append(UpEvent(1))
+swipe_event2.append(UpEvent(2))
+
+dev.touch_proxy.perform(swipe_event2)
+
+
+# 双指捏合
+# 获取当前手机设备
+dev = device()
+
+
+# 向内捏合
+dev.pinch(in_or_out=&#39;in&#39;, center=None, percent=0.5)
+sleep(1.0)
+
+
+# 向外捏合
+dev.pinch(in_or_out=&#39;out&#39;, center=None, percent=0.2)
+sleep(1.0)
+
+dev.pinch(in_or_out=&#39;out&#39;, center=None, percent=0.2)
+sleep(1.0)
+</code></pre></div></p>
+</li>
+</ul>
+<h3 id="_5">全局操作</h3>
+<div class="highlight"><pre><span></span><code>poco.click([0.5,0.5]) # 单击画面中心位置
+poco.long_click([0.5,0.5]) # 长按画面中心位置
+poco.swipe([0.9,0.5],[0.3,0.5]) # 向左滑动
+frozen_poco = poco.freeze() # 冻结当前的UI树，可提高poco查找效率
+poco.use_render_resolution(True, (0 ,100 ,1080 ,2020)) # 自定义渲染分辨率，为更好支持更多不兼容的全面屏设备
+
+
+# wait_for_all() 是在超时时长结束之前，需要 等待所有给定的UI对象都显示出来 ，即一次轮询所有UI
+poco(&quot;wait_ui2&quot;).click()
+yellow = poco(&quot;yellow&quot;)
+blue = poco(&quot;blue&quot;)
+black = poco(&quot;black&quot;)
+poco.wait_for_all([yellow,blue,black])
+poco(&quot;btn_back&quot;).click()
+
+
+# wait_for_any() 则是在超时时长结束之前，等待任意一个UI显示出来，即一次轮询任何一个给定的UI
+bomb = poco(&quot;bomb&quot;)
+yellow = poco(&quot;yellow&quot;)
+blue = poco(&quot;blue&quot;)
+while True:
+    fish = poco.wait_for_any([bomb,yellow,blue])
+    print(fish.get_name())
+
+
+# 小游戏：点击蓝色小鱼和黄色小鱼，不能点击炸弹
+from poco.drivers.unity3d import UnityPoco
+from poco.exceptions import PocoTargetTimeout
+
+poco = UnityPoco()
+
+bomb_count = 0
+while True:
+    blue_fish = poco(&#39;fish_emitter&#39;).child(&#39;blue&#39;)
+    yellow_fish = poco(&#39;fish_emitter&#39;).child(&#39;yellow&#39;)
+    bomb = poco(&#39;fish_emitter&#39;).child(&#39;bomb&#39;)
+    fish = poco.wait_for_any([blue_fish, yellow_fish, bomb])
+    if fish is bomb:
+        # skip the bomb and count to 3 to exit
+        bomb_count += 1
+        if bomb_count &gt; 3:
+            return
+    else:
+        # otherwise click the fish to collect.
+        fish.click()
+    time.sleep(2.5)
+
+
+
+# 滑动
+# swipe from A to B
+point_a = [0.1, 0.1]
+center = [0.5, 0.5]
+poco.swipe(point_a, center)
+
+# swipe from A by given direction
+direction = [0.1, 0]
+poco.swipe(point_a, direction=direction)
+
+# 选中UI执行swipe
+# 向上滑动列表视图
+poco(&#39;Scroll View&#39;).swipe([0, -0.1])
+# 与上面这条代码一样, 并且还可以传入down/left/right
+poco(&#39;Scroll View&#39;).swipe(&#39;up&#39;)  
+# 向下滑动列表视图
+poco(&#39;Scroll View&#39;).swipe(&#39;down&#39;)
+
+# 不选中UI执行swipe
+x, y = poco(&#39;Scroll View&#39;).get_position()
+end = [x, y - 0.1]
+dir = [0, -0.1]
+# 从点A滑动到点B
+poco.swipe([x, y], end)  
+# 从点A沿着一定的方向滑动一段距离   
+poco.swipe([x, y], direction=dir) 
+
+
+
+# 截屏
+from base64 import b64decode
+b64img, fmt = poco.snapshot(width=720)
+open(&#39;screen.{}&#39;.format(fmt), &#39;wb&#39;).write(b64decode(b64img))
+
+
+from base64 import b64decode
+b64img, fmt = poco.snapshot(width=720)
+open(&#39;screen.{}&#39;.format(fmt), &#39;wb&#39;).write(b64decode(b64img))
+</code></pre></div>
+<h3 id="_6">异常处理</h3>
+<ul>
+<li>InvalidOperationException</li>
+<li>PocoException</li>
+<li>PocoNoSuchNodeException</li>
+<li>PocoTargetRemovedException</li>
+<li>PocoTargetTimeout</li>
+</ul>
+<p>示例：
+<div class="highlight"><pre><span></span><code>from poco.exceptions import PocoTargetTimeout
+try:
+    poco(&#39;guide_panel&#39;, type=&#39;ImageView&#39;).wait_for_appearance()
+except PocoTargetTimeout:
+    # bugs here as the panel not shown
+    raise
+
+
+from poco.exceptions import PocoNoSuchNodeException
+img = poco(&#39;guide_panel&#39;, type=&#39;ImageView&#39;)
+try:
+    if not img.exists():
+        img.click()
+except PocoNoSuchNodeException:
+    # If attempt to operate inexistent nodes, an exception will be thrown
+    pass
+</code></pre></div></p>
+<h3 id="_7">应用授权</h3>
+<div class="highlight"><pre><span></span><code>#允许应用的电话权限
+shell(&quot;pm grant com.sina.weibo android.permission.READ_PHONE_STATE&quot;)
+
+#撤销应用的电话权限
+shell(&quot;pm revoke com.sina.weibo android.permission.READ_PHONE_STATE&quot;)
+
+#允许应用存储的读写权限
+shell(&quot;pm grant com.sina.weibo android.permission.READ_EXTERNAL_STORAGE&quot;)
+shell(&quot;pm grant com.sina.weibo android.permission.WRITE_EXTERNAL_STORAGE&quot;)
+
+#撤销应用存储的读写权限
+shell(&quot;pm revoke com.sina.weibo android.permission.READ_EXTERNAL_STORAGE&quot;)
+shell(&quot;pm revoke com.sina.weibo android.permission.WRITE_EXTERNAL_STORAGE&quot;)
+</code></pre></div>
+<p>其他权限：</p>
+<ul>
+<li>应用的电话权限：android.permission.READ_PHONE_STATE</li>
+<li>应用存储的读取权限：android.permission.READ_EXTERNAL_STORAGE</li>
+<li>应用存储的写入权限：android.permission.WRITE_EXTERNAL_STORAGE</li>
+<li>应用打开位置权限：android.permission.ACCESS_COARSE_LOCATION</li>
+<li>应用打开摄像头权限：android.permission.CAMERA</li>
+<li>应用访问麦克风：android.permission.RECORD_AUDIO</li>
+<li>应用读取联系人数据：android.permission.READ_CONTACTS</li>
+<li>应用读取短信数据：android.permission.READ_SMS</li>
+<li>应用读取设备的日历表：android.permission.READ_CALENDAR</li>
+<li>应用写入设备的日历表：android.permission.WRITE_CALENDAR</li>
+</ul>
+<h3 id="_8">控件截图</h3>
+<div class="highlight"><pre><span></span><code>方式一：
+from airtest.core.api import *
+from airtest.aircv import *
+
+auto_setup(__file__)
+
+from poco.drivers.android.uiautomation import AndroidUiautomationPoco
+poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
+
+#获取屏幕分辨率
+android = device()
+xy=android.get_current_resolution()
+
+screen = G.DEVICE.snapshot()
+
+#使用poco去寻找控件
+if poco(text=&quot;游戏增强器&quot;).exists():
+    a=poco(text=&quot;游戏增强器&quot;).get_position()#获取控件的中心坐标
+    b=poco(text=&quot;游戏增强器&quot;).get_size()#获取控件的实际长宽
+
+    #计算左上角坐标，转化成绝对坐标
+    x1=int((a[0]-0.5*b[0])*xy[0])
+    y1=int((a[1]-0.5*b[1])*xy[1])
+
+    #计算右下角坐标，转化成绝对坐标
+    x2=int((a[0]+0.5*b[0])*xy[0])
+    y2=int((a[1]+0.5*b[1])*xy[1])
+
+    # 局部截图
+    screen = aircv.crop_image(screen,(x1,y1,x2,y2))
+    # 保存局部截图到log文件夹中
+    try_log_screen(screen)
+
+
+方式二：
+from airtest.core.api import *
+from airtest.aircv import *
+
+auto_setup(__file__)
+screen = G.DEVICE.snapshot()
+
+# 局部截图
+screen = aircv.crop_image(screen,(0,160,1067,551))
+# 保存局部截图到log文件夹中
+try_log_screen(screen)
+</code></pre></div>
+<h3 id="_9">测试报告</h3>
+<ul>
+<li>记录自定义函数到报告
+    <div class="highlight"><pre><span></span><code>from airtest.core.api import *
+auto_setup(__file__)
+
+@logwrap
+def open_calculator():
+    wake()
+    start_app(&quot;com.sonymobile.exactcalculator&quot;)
+
+open_calculator()
+
+
+# 记录日志并附加截图 =&gt; snapshot=True
+@logwrap
+def open_calculator(snapshot=True):
+    wake()
+    start_app(&quot;com.sonymobile.exactcalculator&quot;)
+</code></pre></div></li>
+<li>
+<p>simple_report(filepath, logpath=True, logfile="log.txt", output="log.html") 接口，它其实是1个简化版的生成报告的接口，可以减少同学们的理解成本和使用成本</p>
+</li>
+<li>
+<p>filepath：指定脚本的路径</p>
+</li>
+<li>logpath：指定log内容的路径</li>
+<li>logfile：指定log.txt文件的路径</li>
+<li>
+<p>output：指定HTML报告的生成路径，必须以 .html 结尾
+    <div class="highlight"><pre><span></span><code>from airtest.core.api import *
+from airtest.report.report import simple_report
+from poco.drivers.android.uiautomation import AndroidUiautomationPoco
+
+def demo():
+    # 连接设备以及初始化工作 log文件夹默认生成在当面目录下 
+    auto_setup(__file__, logdir=True, devices=[&quot;Android:///&quot;,],)
+
+    # 初始化poco
+    poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
+    # 执行一些操作 确保手机app已登录并跳转到app初始化界面
+    try:
+        # 以下操作执行：我的-》我喜欢的音乐-》点击播放
+        poco(text=&quot;我的&quot;).click()
+        poco(text=&quot;我喜欢的音乐&quot;).click()
+        # 灵活结合ide提供的poco ui树获取播放按钮name属性值 
+        poco(name=&quot;com.netease.cloudmusic:id/minPlayBtn&quot;).click()
+    except Exception as err:
+        # 记录报错到logdir下的log.txt文件中，并截图保存发生错误时的手机屏幕
+        log(err, desc=&quot;Finale Error&quot;, snapshot=True)
+    # 无论运行是否成功 输出报告
+    finally:
+        # 默认生成html报告到脚本所在的同级目录下
+        simple_report(__file__, logpath=True, output=&quot;test/app/log.html&quot;)
+
+if __name__ == &#39;__main__&#39;:
+    demo()
+</code></pre></div></p>
+</li>
+<li>
+<p>class LogToHtml(script_root, log_root="",static_root="",export_dir=None,script_name="",logfile="log.txt",lang="en",plugins=None)</p>
+</li>
+<li>
+<p>script_root，指定脚本路径</p>
+</li>
+<li>log_root，指定log文件的路径</li>
+<li>static_root，指定部署静态资源的服务器路径</li>
+<li>export_dir，设置导出报告的存放路径</li>
+<li>script_name，脚本名称</li>
+<li>logfile，指定log文件log.txt的路径</li>
+<li>lang，指定报告的语言（中文：zh；英文：en）</li>
+<li>
+<p>plugins，指定报告插件，使用了poco或者airtest-selenium会用到
+    <div class="highlight"><pre><span></span><code>from airtest.report.report import LogToHtml
+h1 = LogToHtml(script_root=__file__, log_root=&quot;test/app/log&quot;, lang=&quot;zh&quot;, plugins=[&quot;poco.utils.airtest.report&quot;])
+h1.report(output_file=&quot;test/app/log.html&quot;)
+
+
+# 自动连接重启后的设备并继续执行自动化脚本
+from airtest.core.api import *
+from airtest.core.android.android import *
+
+auto_setup(__file__)
+
+dev = connect_device(&quot;android://127.0.0.1:5037/QV720MVQ52&quot;)
+
+from poco.drivers.android.uiautomation import AndroidUiautomationPoco
+poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
+
+# 简单测试网易云音乐APP
+def simple_test():
+    clear_app(&quot;com.netease.cloudmusic&quot;)
+    start_app(&quot;com.netease.cloudmusic&quot;)
+
+    sleep(1.0)
+
+    poco(&quot;com.netease.cloudmusic:id/agree&quot;).click()
+    sleep(1.0)
+    poco(&quot;com.netease.cloudmusic:id/permissionGrant&quot;).click()
+    sleep(1.0)
+    poco(&quot;com.sonymobile.cta:id/permission_allow_button&quot;).click()
+    sleep(1.0)
+
+    wait(Template(r&quot;tpl1667356693271.png&quot;, record_pos=(0.0, -0.688), resolution=(1080, 2520)),timeout=30)
+
+    poco(&quot;com.netease.cloudmusic:id/agreeCheckbox&quot;).click()
+    poco(&quot;com.netease.cloudmusic:id/trial&quot;).click()
+    sleep(1.0)
+
+# 简单测试后让设备重启
+simple_test()
+dev.shell(&quot;reboot&quot;)
+sleep(60.0)
+
+# 这里执行重启后的自动化操作
+log(&quot;这里开始执行重启后的自动化操作&quot;)
+
+# 重新连接设备
+connect_device(&quot;android://127.0.0.1:5037/QV720MVQ52&quot;)
+
+# 给设备解锁
+android = Android(&quot;QV720MVQ52&quot;)
+android.unlock()
+swipe([552, 2407],[543, 664])
+
+# 重新初始化Android poco并进行一些自动化测试
+from poco.drivers.android.uiautomation import AndroidUiautomationPoco
+poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
+sleep(3.0)
+simple_test()
+</code></pre></div></p>
+</li>
+<li>
+<p>logdir与logpath</p>
+<p>生成Airtest报告需要依赖脚本运行过程保存的log，所以如需生成报告，就需要保存脚本运行过程的log，auto_setup  接口的logdir参数可以设置log保存路径；使用simple_report生成报告时，就可以设置logpath，到logdir指定的log保存路径下面去找脚本对应的log内容</p>
+</li>
+</ul>
+<h3 id="yosemiteapk">Yosemite.apk</h3>
+<p>在Android平台下，Airtest配了一个专用的输入法 Yosemite.apk，当我们在Android设备上运行到输入文本的接口，比如 text 接口时，会自动启用这个 Yosemite 输入法来进行输入
+当Android设备启用 Yosemite 输入法时，我们就只能通过脚本来对设备进行输入，无法手工输入，如果需要手工输入，可以在手机系统的输入法设置中，把输入法切换回系统输入法即可恢复
+如果我们确定在测试脚本中，不会涉及任何文本输入的操作；或者是只需要输入英文，并且是以 adb shell input 的方式来进行输入的，我们可以不在手机上安装 Yosemite 输入法
+<div class="highlight"><pre><span></span><code># 在脚本中指定不使用 Yosemite 输入法
+from airtest.core.api import *
+# 方式一
+auto_setup(__file__,devices=[&quot;android:///?ime_method=ADBIME&quot;])
+
+
+# 方式二
+init_device(&quot;Android&quot;, ime_method=&quot;ADBIME&quot;)
+</code></pre></div></p>
+<h3 id="airtest-text">Airtest的 text 接口</h3>
+<p>Airtest框架给我们提供的输入接口是 text 接口，在使用 text 接口之前，我们 必须先点击输入框，激活下输入光标
+text 接口有一个默认参数 enter=True，会在输入完毕后自动按一下回车键（相当于 keyevent("ENTER")），假如不需要，请传入 enter=False
+<div class="highlight"><pre><span></span><code>text(&quot;test&quot;, enter=False)
+</code></pre></div></p>
+<p>部分输入框，需要在输入内容后，点击输入键盘上的 搜索 按钮才能够激活搜索操作，可以传入 search=True 参数
+<div class="highlight"><pre><span></span><code>text(&quot;test&quot;, search=True)
+</code></pre></div></p>
+<p>如果我们在使用类似 text("11") 这样的脚本，不能正确回车的时候，我们可以使用下述方式来添加这个回车的效果
+<div class="highlight"><pre><span></span><code>text(&quot;11&quot;)
+ime=G.DEVICE.yosemite_ime
+ime.code(6)
+</code></pre></div></p>
+<p>text 输入失败，大概率都绕不过下面几个问题：</p>
+<ul>
+<li>手机阻止了 Yosemite.apk 的安装和运行</li>
+<li>没有将 Yosemite 输入法设置为手机默认输入法</li>
+<li>输入账号密码之类的，没有关闭手机的 安全输入 / 安全键盘 设置</li>
+<li>部分手机的兼容性问题</li>
+<li>部分模拟器未关闭 物理键盘 的问题</li>
+</ul>
+<div class="highlight"><pre><span></span><code># 除了Airtest框架提供的 text 接口，Poco框架也提供了输入的 set_text 接口
+poco(&quot;com.android.mms:id/recipients_editor&quot;).click()
+poco(&quot;com.android.mms:id/recipients_editor&quot;).set_text(&quot;test&quot;)
+
+poco(&quot;com.android.mms:id/recipients_editor&quot;).set_text(&quot; &quot;) # 快速清空输入框
+
+
+# 输入法切换(ADB指定切换某个输入法，需要 先启动，再设置)
+adb shell ime enable 输入法ID
+adb shell ime set 输入法ID
+
+如下：
+adb shell ime enable com.netease.nie.yosemite/.ime.ImeService
+adb shell ime set com.netease.nie.yosemite/.ime.ImeService
+
+# 查看当前使用的输入法
+adb shell settings get secure default_input_method
+
+
+# 切换输入法的Python实现
+from airtest.core.api import *
+auto_setup(__file__)
+ym = &quot;com.netease.nie.yosemite/.ime.ImeService&quot;
+sh = &quot;com.sohu.inputmethod.sogouoem/.SogouIME&quot;
+
+def set_ime(ime):
+    shell(&quot;ime enable &quot; + ime)
+    shell(&quot;ime set &quot; + ime)
+
+set_ime(ym)
+text(&quot;123&quot;, enter=False)
+set_ime(sh)
+
+
+# 获取当前输入法
+from airtest.core.api import *
+auto_setup(__file__)
+dev = device()
+print(dev.yosemite_ime._get_ime_list())
+</code></pre></div>
+<h3 id="_10">断言</h3>
+<ul>
+<li>assert_exists =&gt; assert_equal(poco("star_single").exists(),True,"断言星星控件存在")</li>
+<li>assert_not_exists</li>
+<li>assert_equal =&gt; assert_equal(poco(xxx).exists(),True,"xxx控件存在")</li>
+<li>assert_not_equal</li>
+<li>assert_true</li>
+<li>assert_false</li>
+<li>assert_is</li>
+<li>assert_is_not</li>
+<li>assert_is_none</li>
+<li>assert_is_not_none</li>
+<li>assert_in</li>
+<li>assert_not_in</li>
+<li>assert_is_instance</li>
+<li>assert_not_is_instance</li>
+</ul>
+<h3 id="_11">全局变量</h3>
+<p>在airtest.core.settings里，提供了部分全局默认属性，其中我们列举出几个常见属性和它们的默认值：
+- 变量参数
+  - LOG_DIR = None # 用于自定义log内容的保存路径
+  - LOG_FILE = "log.txt" # 用于自定义记录log内容的txt文档的名称
+  - RESIZE_METHOD = staticmethod(cocos_min_strategy) # 分辨率适配规则
+  - CVSTRATEGY = ["mstpl", "tpl", "surf", "brisk"] # 图像识别算法
+  - THRESHOLD = 0.7 # [0, 1] # 图像识别阙值
+  - OPDELAY = 0.1 # 步骤之间的时间间隔
+  - FIND_TIMEOUT = 20 # 图片查找超时时长
+  - FIND_TIMEOUT_TMP = 3 # 图片查找超时时长
+  - PROJECT_ROOT = os.environ.get("PROJECT_ROOT", "") # 项目根目录
+  - SNAPSHOT_QUALITY = 10 # 1-100 # 截图压缩精度
+  - IMAGE_MAXSIZE = os.environ.get("IMAGE_MAXSIZE", None) # 截图尺寸大小
+  - SAVE_IMAGE = True # 保存运行过程的截图</p>
+<ul>
+<li>全局变量设置方法
+    <div class="highlight"><pre><span></span><code>from airtest.core.api import *
+ST.THRESHOLD = 0.8
+
+from airtest.core.settings import Settings as ST
+from airtest.core.helper import set_logdir
+ST.LOG_FILE = &quot;log123.txt&quot;
+set_logdir(r&#39;D:\test\1234.air\logs&#39;)
+
+from airtest.core.settings import Settings as ST
+
+# 设置全局截图尺寸不超过600*600，如果不设置，默认为原图尺寸
+ST.IMAGE_MAXSIZE = 600
+
+# 不单独设置的情况下，默认采用ST中的全局变量的数值，即600*600
+snapshot(msg=&quot;test12&quot;)
+
+# 设置单张截图的最大尺寸不超过1200*1200
+snapshot(filename=&quot;test2.png&quot;, msg=&quot;test02&quot;, quality=90, max_size=1200)
+</code></pre></div></li>
+</ul>
+<h3 id="adb">常用 adb 命令</h3>
+<p><div class="highlight"><pre><span></span><code>adb devices # 查看已连接设备
+adb version # 查看adb版本
+adb shell pm list packages # 查看设备上的所有应用
+adb shell pm list packages -3 # 查看设备上的第三方应用
+adb shell pm list packages -s # 查看设备上的系统应用
+adb install &quot;D:/demo/tutorial-blackjack-release-signed.apk&quot; # 安装APK
+adb uninstall com.netease.cloudmusic # 卸载应用
+adb shell dumpsys package com.netease.cloudmusic # 查看应用详细信息
+adb pull /sdcard/sr.mp4 ~/tmp/ # 复制设备里的文件到电脑
+adb push ~/sr.mp4 /sdcard/ # 复制电脑里的文件到设备
+adb shell input keyevent 26 # 模拟电源键
+adb shell input keyevent 3 # 模拟HOME键
+adb shell input keyevent 4 # 模拟返回键
+adb shell input keyevent 224 # 点亮屏幕
+adb shell input keyevent 223 # 熄灭屏幕
+adb shell input swipe 200 1000 200 500 # 模拟滑动解锁（200 1000 200 500 分别表示起始点x坐标 起始点y坐标 结束点x坐标 结束点y坐标）
+adb shell input text airtest # 输入文本
+adb -s PFT4PBLF75GQHYBM shell getprop ro.product.model # 查看设备号
+adb -s PFT4PBLF75GQHYBM shell wm size # 查看设备分辨率
+adb -s PFT4PBLF75GQHYBM shell getprop ro.build.version.release # 查看Android系统版本
+</code></pre></div>
+想了解更多详细的ADB操作的同学，我们推荐大家阅读这篇GitHub文档：https://github.com/mzlogin/awesome-adb</p>
+<h3 id="tips">Tips</h3>
+<ul>
+<li>
+<p>用Poco测试小程序</p>
+<p>微信和QQ内置的浏览器内核不是Android原生的WebView，而是他们自家的 X5 WebView 内核。我们需要切换到系统WebView内核，这样Poco才能更好地识别出小程序的各种UI控件</p>
+<p>如何进行设置：<br>
+① 打开微信中任意一个聊天框，输入 debugtbs.qq.com，点击进入TBS调试页面，再点击页面内的“安装线上内核”<br>
+② 安装成功后，我们需要重启微信才可以生效；<br>
+③ 再次进去刚才的TBS调试页面，检查我们的设置是否生效，点击“查看版本信息”，版本信息为 0(null) 则设置成功<br></p>
+<p>设置成功以后即可用Poco对小程序进行测试（TBS调试只适用于Android系统，iOS暂不支持）</p>
+<p>示例：
+<div class="highlight"><pre><span></span><code>from airtest.core.api import *
+
+from poco.drivers.android.uiautomation import AndroidUiautomationPoco
+poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
+auto_setup(__file__)
+
+# 传入微信的包名启动微信app
+start_app(&quot;com.tencent.mm&quot;)
+
+# 下滑进去小程序页面
+swipe((550,250),(550,1200))
+sleep(2.0)
+
+# 点击下厨房小程序
+poco(&quot;com.tencent.mm:id/cud&quot;).offspring(&quot;com.tencent.mm:id/dai&quot;).child(&quot;android.widget.RelativeLayout&quot;).offspring(&quot;com.tencent.mm:id/le&quot;).offspring(&quot;com.tencent.mm:id/lh&quot;).child(&quot;android.widget.LinearLayout&quot;)[2].offspring(&quot;com.tencent.mm:id/eko&quot;).child(&quot;android.widget.RelativeLayout&quot;)[0].offspring(&quot;com.tencent.mm:id/cik&quot;).click()
+sleep(2.0)
+
+# 点击搜索框
+poco(text=&quot;今天想吃点什么？&quot;).click()
+sleep(1.0)
+
+# 再次点击搜索框
+poco(&quot;android.widget.EditText&quot;).click()
+sleep(1.0)
+
+# 输入搜索词“蛋糕”
+poco(&quot;android.widget.EditText&quot;).set_text(&quot;蛋糕&quot;)
+
+# 点击搜索
+poco(text=&quot;搜索&quot;).click()
+
+# 打印找到第一个配方的标题
+print(poco(text=&quot;超容易上手的古早蛋糕&quot;).get_text())
+</code></pre></div></p>
+</li>
+<li>
+<p>应用swipe跳过APP的介绍页
+    <div class="highlight"><pre><span></span><code>方式一：
+# 获取设备的高度和宽度
+width, height = device().get_current_resolution()
+# 校准滑动的起点和终点
+start_pt = (width * 0.9, height / 2)
+end_pt = (width * 0.1, height / 2)
+# 滑动5次:
+for i in range(5):
+    swipe(start_pt, end_pt)
+    sleep(1)  # 等待设备的响应
+
+方式二：按比例滑动
+for i in range(5):
+    poco.swipe([0.9,0.5], [0.1,0.5])
+    sleep(1)  # 等待设备的响应
+</code></pre></div></p>
+</li>
+</ul>
+<h3 id="pytest-airtest-poco">场景实践：pytest + airtest + poco</h3>
+<p>代码demo: pytest + airtest + poco<br>
+脚本名称：test_andorid_poco.py<br>
+设备类型：荣耀Waterplay<br>
+Android版本：7.0<br>
+测试APP：华为视频<br>
+测试场景：获取华为视频电影Tab下的全部电影名称<br>
+运行命令：pytest test/app/test_andorid_poco.py -s<br>
+<div class="highlight"><pre><span></span><code>import os
+import pytest
+import logging
+from airtest.core.api import *
+from airtest.core.android.adb import *
+from airtest.core.android.recorder import *
+from poco.proxy import UIObjectProxy
+from airtest.report.report import LogToHtml
+from airtest.report.report import simple_report
+from poco.drivers.android.uiautomation import AndroidUiautomationPoco
+
+
+__author__ = &quot;hehuabo&quot;
+
+
+# 全局配置每个操作之间的延迟时间
+ST.OPDELAY = 1  
+
+# NOTE：操作之间间隔太短可能导致异常 =&gt; requests.exceptions.ReadTimeout: HTTPConnectionPool(host=&#39;127.0.0.1&#39;, port=16583): Read timed out. (read timeout=0.3)
+
+
+def loop_items(poco: AndroidUiautomationPoco, locater: UIObjectProxy):
+    seen_items = set()
+
+    while True:
+        items = locater
+        new_items_found = False
+
+        for item in items:
+            title = item.get_text()
+            if title not in seen_items:
+                logging.info(title)
+                seen_items.add(title)
+                new_items_found = True
+
+        if not new_items_found:
+            break
+
+        # 模拟屏幕向上滑动
+        poco.swipe([0.5, 0.8], [0.5, 0.2], duration=2.0)
+
+
+@pytest.fixture(scope=&quot;session&quot;, autouse=True)
+def clear_log():
+    # 清理日志
+    if os.path.exists(&quot;test/app/log&quot;):
+        os.system(&quot;rm -r test/app/log/*&quot;)
+
+
+@pytest.fixture(scope=&quot;session&quot;, autouse=True)
+def poco():
+    # device = connect_device(&quot;Android://127.0.0.1:5037/JVR6R18915000603&quot;)
+    # poco = AndroidUiautomationPoco(device)
+
+    auto_setup(__file__, devices=[&quot;Android://127.0.0.1:5037/JVR6R18915000603&quot;], logdir=True, compress=90)
+    poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
+
+    adb = ADB(serialno=&quot;JVR6R18915000603&quot;)
+    recorder = Recorder(adb)
+
+    # 开启录屏
+    recorder.start_recording()
+
+    yield poco
+
+    home()
+    keyevent(&quot;POWER&quot;)  # 按电源键锁屏
+
+    # 结束录屏
+    recorder.stop_recording(output=&quot;test/app/log/test.mp4&quot;)
+
+    # 生成报告
+    # simple_report(__file__, logpath=True, output=&quot;test/app/log.html&quot;)
+
+    LogToHtml(
+        script_root=__file__,
+        log_root=&quot;test/app/log&quot;,
+        lang=&quot;zh&quot;,
+        plugins=[&quot;poco.utils.airtest.report&quot;],
+    ).report(output_file=&quot;test/app/log/log.html&quot;)
+
+
+@pytest.fixture(scope=&quot;session&quot;, autouse=True)
+def run_app(poco: AndroidUiautomationPoco):
+    # 唤醒屏幕
+    wake()
+
+    # 屏幕解锁
+    for num in [1, 2, 5, 8]:
+        poco(text=f&quot;{num}&quot;).click()
+
+    # 清理某个应用数据
+    clear_app(&quot;com.huawei.himovie&quot;)
+    # 启动某个应用
+    start_app(&quot;com.huawei.himovie&quot;)
+
+
+def test_get_video_title(poco: AndroidUiautomationPoco):
+    poco(&quot;com.huawei.himovie:id/btn_confirm&quot;).click()
+
+    poco(&quot;com.huawei.himovie:id/advert_dialog_close_image_view&quot;).wait_for_appearance()
+    poco(&quot;com.huawei.himovie:id/advert_dialog_close_image_view&quot;).click()
+
+    poco(text=&quot;电影&quot;).click()
+    poco(text=&quot;全部电影&quot;).click()
+
+    seen_items = set()
+    while True:
+        try:
+            poco(&quot;android.widget.LinearLayout&quot;).offspring(&quot;com.huawei.himovie:id/title&quot;).wait_for_appearance()
+            items = poco(&quot;android.widget.LinearLayout&quot;).offspring(&quot;com.huawei.himovie:id/title&quot;)
+            new_items_found = False
+
+            for item in items:
+                title = item.get_text()
+                if title not in seen_items:
+                    logging.info(title)
+                    seen_items.add(title)
+                    new_items_found = True
+
+            if not new_items_found:
+                break
+
+            # 模拟屏幕向上滑动
+            poco.swipe([0.5, 0.8], [0.5, 0.2], duration=1.0)
+
+        except Exception as e:
+            logging.error(f&quot;Exception occurred during swipe: {e}&quot;)
+            break
+</code></pre></div></p>
+<h3 id="win-wsl-airtestpoco">特殊开发环境：Win + WSL + airtest/poco</h3>
+<p>在Win机器上通过WSL进行APP自动化时，使用 <code>adb devices</code> 无法获取到设备，此时需要通过以下方式解决（参见：https://jaro.blog/blog/adb-in-wsl2.html）：
+1. 确保Win和WSL中使用相同的adb版本，通过 <code>adb version</code>查看
+2. 在 Win 上执行：
+    <div class="highlight"><pre><span></span><code>adb kill-server
+adb -a -P 5037 nodaemon server
+</code></pre></div>
+3. 在 Win 上执行 <code>ipconfig</code> 获取IP地址
+    <div class="highlight"><pre><span></span><code>以太网适配器 vEthernet (WSL (Hyper-V firewall)):
+
+连接特定的 DNS 后缀 . . . . . . . :
+本地链接 IPv6 地址. . . . . . . . : fe80::414:6dac:f1ee:400d%34
+IPv4 地址 . . . . . . . . . . . . : 192.168.144.1
+子网掩码  . . . . . . . . . . . . : 255.255.240.0
+默认网关. . . . . . . . . . . . . :
+</code></pre></div>
+4. 在 WSL 中执行 <code>sudo vim /etc/resolv.conf</code> 替换 nameserver 为上面获取到的IP（192.168.144.1）
+5. 在 WSL 中的 profile （如 ~/.zshrc）配置环境变量：
+    <div class="highlight"><pre><span></span><code>export ADB_SERVER_SOCKET=tcp:192.168.144.1:5037
+</code></pre></div>
+6. 在 WSL 中执行<code>adb devices</code>即可正常获取设备
+7. 调整连接设备的字符串，使用上面的IP代替 127.0.0.1，如下：
+    <div class="highlight"><pre><span></span><code>device = connect_device(f&quot;Android://192.168.144.1:5037/{device_id}&quot;)
+poco = AndroidUiautomationPoco(device)
+</code></pre></div></p>
+<h3 id="_12">相关引用</h3>
+<ul>
+<li>掘金：https://juejin.cn/user/1275089221067928</li>
+<li>官网教程：https://airtest.doc.io.netease.com/tutorial/</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Huabo He
+
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/baiyyee" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://hub.docker.com/repository/docker/hehuabo/wetest" target="_blank" rel="noopener" title="hub.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1zm0-204.3h-66.1v60.7h66.1zm78.2 144.8H362v59.4h66.1zm-156.3-72.1h-66.1v60.1h66.1zm78.1 0h-66.1v60.1h66.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1zm78.1 0h-66.1v59.4h66.1zm-78.1-72.1h-66.1v60.1h66.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://pypi.org/project/WeTest" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:<hhbstar@hotmail.com>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.8l167.6-182.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.share", "search.highlight"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>
